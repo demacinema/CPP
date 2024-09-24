@@ -6,7 +6,7 @@
 /*   By: demrodri <demrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 01:13:33 by demrodri          #+#    #+#             */
-/*   Updated: 2024/09/24 01:13:35 by demrodri         ###   ########.fr       */
+/*   Updated: 2024/09/24 02:04:21 by demrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ class	Phonebook
 		void	add(void);
 		void	search(void);
 		void	print(Contact contact);
-		/* Getters */
+		// GETTERS
 		Contact	get_contact(int index);
 };
 
