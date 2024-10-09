@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: demrodri <demrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/09 00:21:44 by demrodri          #+#    #+#             */
-/*   Updated: 2024/10/09 15:00:37 by demrodri         ###   ########.fr       */
+/*   Created: 2024/10/09 21:56:16 by demrodri          #+#    #+#             */
+/*   Updated: 2024/10/09 22:54:46 by demrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,22 @@
 
 # include <iostream>
 # include <string>
+// # include <stdlib.h>
 
-class	Zombie
+class Zombie
 {
 	private:
 		std::string		_name;
-
+		
 	public:
 		Zombie(void);
 		Zombie(std::string name);
 		~Zombie(void);
-
-		void		announce( void ) const;
+		
+		void		setName(std::string);
+		void		announce(void) const;
+	
 };
-
-Zombie *newZombie(std::string name);
-void	randomChump(std::string name);
+Zombie	*zombieHorde(int N, std::string name);
 
 #endif

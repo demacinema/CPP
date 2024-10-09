@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: demrodri <demrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/09 00:20:17 by demrodri          #+#    #+#             */
-/*   Updated: 2024/10/09 22:23:04 by demrodri         ###   ########.fr       */
+/*   Created: 2024/10/09 21:54:21 by demrodri          #+#    #+#             */
+/*   Updated: 2024/10/09 23:03:34 by demrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-int	main(void)
+int	main()
 {
 	std::cout << "CONSTRUCTORS" << std::endl;
 	Zombie	zombie1;
@@ -22,17 +22,25 @@ int	main(void)
 	zombie2.announce();
 	std::cout << std::endl;
 
-	std::cout << "STACK" << std::endl;
-	randomChump("Stack Zombie");
-	std::cout << std::endl;
+	std::cout << "ZOMBIE HORDE" << std::endl;
+	Zombie		*horde;
+	int			nbZombies;
+	int			i;
 	
-	std::cout << "HEAP" << std::endl;
-	Zombie	*heapZ;
+	std::string	name = "zombie";
+	nbZombies = 10;
+	i = 0;
+	
+	horde = zombieHorde(nbZombies, name);
 
-	heapZ = newZombie("Heap Zombie");
-	heapZ->announce();
-	delete(heapZ);
-	std::cout << std::endl;
+	while (i < nbZombies)
+	{
+		horde[i].announce();
+		i++;
+	}
+	
+	delete[] horde; //for freeing the array of objects (created with new[])
+	std::cout << nbZombies << " ZOMBIES DESTROYED!" << std::endl;
 
 	return (0);
 }

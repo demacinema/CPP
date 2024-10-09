@@ -6,7 +6,7 @@
 #    By: demrodri <demrodri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/09 00:18:52 by demrodri          #+#    #+#              #
-#    Updated: 2024/10/09 00:39:43 by demrodri         ###   ########.fr        #
+#    Updated: 2024/10/09 21:52:04 by demrodri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC = g++
 RM = rm -f
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
 
-NAME = ./brainzz
+NAME = ./brainz
 
 all: $(NAME)
 
@@ -30,5 +30,10 @@ fclean: clean
 	$(RM) $(NAME)
 
 re: fclean $(NAME)
+
+# Valgrind Leak Check Target
+leak: CFLAGS = $(CPPFLAGS) -g  # Add -g only for the leak target
+leak: $(NAME)
+	valgrind --leak-check=full --track-origins=yes $(NAME)
 
 .PHONY: all clean fclean re

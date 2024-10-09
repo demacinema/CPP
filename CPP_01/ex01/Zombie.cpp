@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: demrodri <demrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/09 00:20:31 by demrodri          #+#    #+#             */
-/*   Updated: 2024/10/09 21:43:55 by demrodri         ###   ########.fr       */
+/*   Created: 2024/10/09 21:54:58 by demrodri          #+#    #+#             */
+/*   Updated: 2024/10/09 22:50:03 by demrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,10 @@ Zombie::~Zombie(void)
 void	Zombie::announce(void) const
 {
 	std::cout << _name << ": BraiiiiiiinnnzzzZ..." << std::endl;
+}
+
+//set name function
+void	Zombie::setName(std::string name)
+{
+	_name = name;
 }
