@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: demrodri <demrodri@student.42.fr>          +#+  +:+       +#+         #
+#    By: demacinema <demacinema@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/24 00:38:09 by demrodri          #+#    #+#              #
-#    Updated: 2024/09/24 00:56:27 by demrodri         ###   ########.fr        #
+#    Updated: 2024/10/10 20:47:42 by demacinema       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
