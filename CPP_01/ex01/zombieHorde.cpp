@@ -6,7 +6,7 @@
 /*   By: demrodri <demrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 21:55:39 by demrodri          #+#    #+#             */
-/*   Updated: 2024/10/09 22:39:59 by demrodri         ###   ########.fr       */
+/*   Updated: 2024/10/09 23:08:38 by demrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 Zombie	*zombieHorde(int N, std::string name)
 {
-	Zombie	*horde = new Zombie[N];
+	Zombie	*horde = new Zombie[N]; //allocate an array of objects
 	
 	int i = 0;
 
