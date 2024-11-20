@@ -1,0 +1,43 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: demacinema <demacinema@student.42.fr>      +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/11/20 22:41:51 by demacinema        #+#    #+#              #
+#    Updated: 2024/11/20 22:41:52 by demacinema       ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+Name	=	materia
+CXX		=	c++
+
+CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98 
+#-fsanitize=address
+
+SRC = $(wildcard *.cpp)
+
+OBJDIR = ./obj/
+
+OBJ = $(addprefix $(OBJDIR), $(SRC:.cpp=.o))
+
+
+all: $(Name)
+
+$(Name): $(OBJ)
+	$(CXX) $(CXXFLAGS) -o $(Name) $(OBJ)
+
+$(OBJDIR)%.o: %.cpp
+	@mkdir -p $(OBJDIR)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+clean:
+	rm -rf $(OBJDIR)
+
+fclean: clean
+	rm -f $(Name)
+
+re: fclean all
+
+.PHONY: all clean fclean re
