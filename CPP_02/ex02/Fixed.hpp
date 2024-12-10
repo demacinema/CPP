@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: demacinema <demacinema@student.42.fr>      +#+  +:+       +#+        */
+/*   By: demrodri <demrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 22:34:16 by demacinema        #+#    #+#             */
-/*   Updated: 2024/11/20 22:34:17 by demacinema       ###   ########.fr       */
+/*   Updated: 2024/12/10 23:50:41 by demrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,14 @@ class Fixed
 		static const Fixed	&min(const Fixed &a, const Fixed &b);
 		static const Fixed	&max(Fixed &a, Fixed &b);
 		static const Fixed	&max(const Fixed &a, const Fixed &b);
-		friend std::ostream	&operator<<(std::ostream &os, const Fixed &fixed);
+		
+		float				getValueForOutput() const;	
+		// friend std::ostream	&operator<<(std::ostream &os, const Fixed &fixed);
 	private:
 		int					_value;
 		static const int	_fractionalBits = 8;
 };
+
+std::ostream &operator<<(std::ostream &os, const Fixed &fixed);
 
 #endif

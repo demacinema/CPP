@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: demacinema <demacinema@student.42.fr>      +#+  +:+       +#+        */
+/*   By: demrodri <demrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 22:33:40 by demacinema        #+#    #+#             */
-/*   Updated: 2024/12/10 18:44:44 by demacinema       ###   ########.fr       */
+/*   Updated: 2024/12/10 23:46:43 by demrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,19 @@ int		Fixed::toInt() const
 	return (_value >> _fractionalBits);
 }
 
+float Fixed::getValueForOutput() const
+{
+	return this->toFloat();
+}
+
 std::ostream &operator<<(std::ostream &os, const Fixed &fixed)
 {
-	os << fixed.toFloat();
-	return (os);
+	os << fixed.getValueForOutput();
+	return os;
 }
+
+// std::ostream &operator<<(std::ostream &os, const Fixed &fixed)
+// {
+// 	os << fixed.toFloat();
+// 	return (os);
+// }
