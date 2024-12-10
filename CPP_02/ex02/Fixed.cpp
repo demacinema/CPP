@@ -6,11 +6,12 @@
 /*   By: demacinema <demacinema@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 22:34:08 by demacinema        #+#    #+#             */
-/*   Updated: 2024/11/20 22:34:09 by demacinema       ###   ########.fr       */
+/*   Updated: 2024/12/10 20:41:30 by demacinema       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
+#include <cmath>
 
 Fixed::Fixed() : _value(0)
 {

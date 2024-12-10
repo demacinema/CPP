@@ -6,15 +6,16 @@
 /*   By: demacinema <demacinema@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 22:33:40 by demacinema        #+#    #+#             */
-/*   Updated: 2024/11/20 22:33:41 by demacinema       ###   ########.fr       */
+/*   Updated: 2024/12/10 18:44:44 by demacinema       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
+#include <cmath>
 
 Fixed::Fixed() : _value(0)
 {
-	std::cout << " Default constructor called" << std::endl;
+	std::cout << "Default constructor called" << std::endl;
 }
 
 Fixed::Fixed(const int value)
@@ -31,19 +32,20 @@ Fixed::Fixed(const float value)
 
 Fixed::~Fixed()
 {
-	std::cout << " Deconstructor called" << std::endl;
+	std::cout << "Destructor called" << std::endl;
 }
 
-Fixed::Fixed(const Fixed& other) : _value(other._value)
+Fixed::Fixed(const Fixed& other): _value(other.getRawBits()) // _value(other._value)
 {
-	std::cout << " Copy constructor called" << std::endl;
+	std::cout << "Copy constructor called" << std::endl;
+	// _value = other.getRawBits();
 }
 
 Fixed& Fixed::operator=(const Fixed& other)
 {
-	std::cout << " Copy assignment operator called" << std::endl;
+	std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &other)
-		_value = other._value;
+		_value = other.getRawBits(); //_value = other._value;
 	return *this;
 }
 
