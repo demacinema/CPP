@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: demacinema <demacinema@student.42.fr>      +#+  +:+       +#+        */
+/*   By: demrodri <demrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/20 22:36:21 by demacinema        #+#    #+#             */
-/*   Updated: 2024/11/20 22:36:22 by demacinema       ###   ########.fr       */
+/*   Created: 2024/11/20 22:35:31 by demacinema        #+#    #+#             */
+/*   Updated: 2025/01/04 15:40:09 by demrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 # define SCAVTRAP_HPP
 # include "ClapTrap.hpp"
 
-class ScavTrap : public Claptrap
+class ScavTrap : public ClapTrap
 {
 	public:
 				ScavTrap();
 				ScavTrap(const std::string &name);
 				~ScavTrap();
+		void	attack(const std::string &target);
 		void	guardGate();
 };
 

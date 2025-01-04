@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: demacinema <demacinema@student.42.fr>      +#+  +:+       +#+         #
+#    By: demrodri <demrodri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/20 22:34:55 by demacinema        #+#    #+#              #
-#    Updated: 2024/11/20 22:34:56 by demacinema       ###   ########.fr        #
+#    Updated: 2025/01/04 15:50:14 by demrodri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= fixed
+NAME	= claptrap
 
 SRC	=	$(wildcard *.cpp)
 OBJ	=	$(SRC:.cpp=.o)

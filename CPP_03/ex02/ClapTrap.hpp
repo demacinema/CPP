@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: demacinema <demacinema@student.42.fr>      +#+  +:+       +#+        */
+/*   By: demrodri <demrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 22:35:45 by demacinema        #+#    #+#             */
-/*   Updated: 2024/11/20 22:35:46 by demacinema       ###   ########.fr       */
+/*   Updated: 2025/01/04 15:39:34 by demrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,17 @@
 
 # include <iostream>
 # include <string>
+# include <cstdlib> //EXIT_FAILURE & EXIT_SUCCESS
+# include <stdexcept> //std::runtime_error
 
-class Claptrap
+class ClapTrap
 {
 	public:
-					Claptrap();
-					Claptrap(const std::string &name);
-					~Claptrap();
-		Claptrap	&operator=(const Claptrap &other);
+					ClapTrap();
+					ClapTrap(const std::string &name);
+		virtual		~ClapTrap();
+					ClapTrap(const ClapTrap& other);
+		ClapTrap	&operator=(const ClapTrap &other);
 		std::string	getName(void) const;
 		int			getHp(void) const;
 		int			getEp(void) const;
@@ -30,9 +33,10 @@ class Claptrap
 		void		setHp(int value);
 		void		setEp(int value);
 		void		setAd(int value);
-		void		attack(const std::string &target);
+		virtual		void		attack(const std::string &target);//PERMITS POLYMORPHISM
 		void		takeDamage(unsigned int amount);
 		void		beRepaired(unsigned int amount);
+		void		checkValue(int value);
 	private:
 		std::string	_name;
 		int			_hp;
