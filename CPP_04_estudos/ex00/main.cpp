@@ -6,7 +6,7 @@
 /*   By: demrodri <demrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 17:02:16 by demrodri          #+#    #+#             */
-/*   Updated: 2025/01/04 20:16:37 by demrodri         ###   ########.fr       */
+/*   Updated: 2025/01/04 20:24:36 by demrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,11 @@ int main()
 std::cout << "--------------------------------------------" << std::endl;
 	Animal animal;
 std::cout << "--------------------------------------------" << std::endl;
-	Cat cat("Cat");
+	Cat cat;
+	Cat scat("Scat");
 std::cout << "--------------------------------------------" << std::endl;
-	Dog dog("Dog");
+	Dog dog;
+	Dog sdog("Sdog");
 std::cout << "--------------------------------------------" << std::endl;
 	animal.makeSound();
 	cat.makeSound();
