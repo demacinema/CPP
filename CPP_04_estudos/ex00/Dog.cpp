@@ -3,24 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: demrodri <demrodri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: demacinema <demacinema@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 17:02:24 by demrodri          #+#    #+#             */
-/*   Updated: 2025/01/04 20:17:13 by demrodri         ###   ########.fr       */
+/*   Updated: 2025/01/09 00:20:54 by demacinema       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Dog.hpp"
 
-Dog::Dog() //: type("Dog")
+Dog::Dog() //: _type("Dog")
 {
-	type = "Dog";
-	std::cout << "Default constructor of DOG called: " << type << std::endl;
+	// setType("Dog");
+	_type = "Dog";
+	std::cout << "Default constructor of DOG called: " << _type << std::endl;
 }
 
-Dog::Dog(const std::string &name) //: type(name)
+Dog::Dog(const std::string &name) //: _type(name)
 {
-	type = name;
+	_type = name;
 	std::cout << "String constructor of DOG called: " << name << std::endl;
 }
 
@@ -33,19 +34,23 @@ Dog::~Dog()
 Dog::Dog(const Dog& other) : Animal()
 {
 	std::cout << "Copy constructor of DOG called" << std::endl;
-	type = other.type;
+	_type = other._type;
 }
 
 Dog &Dog::operator=(const Dog& other)
 {
+    //  std::cout << "Hello from Dog assignment operator" << std::endl;
+    //  if (this != &assign_op)
+    //     _type_ = assign_op._type_;
+    // return (*this);
 	if (this != &other)
 	{
-		this->type = other.type;
+		this->_type = other._type;
 	}
 	return (*this);
 }
 
-void Dog::makeSound()
+void Dog::makeSound() const
 {
 	std::cout << "DOG SOUND!" << std::endl;
 }

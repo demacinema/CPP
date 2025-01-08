@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: demrodri <demrodri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: demacinema <demacinema@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 16:40:15 by demrodri          #+#    #+#             */
-/*   Updated: 2025/01/04 17:56:24 by demrodri         ###   ########.fr       */
+/*   Updated: 2025/01/08 23:48:32 by demacinema       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #  define ANIMAL_HPP
 
 # include <iostream>
-# include <string>
-# include <cstdlib> //EXIT_FAILURE & EXIT_SUCCESS
-# include <stdexcept> //std::runtime_error
+// # include <string>
+// # include <cstdlib> //EXIT_FAILURE & EXIT_SUCCESS
+// # include <stdexcept> //std::runtime_error
 
 class Animal
 {
@@ -27,10 +27,14 @@ class Animal
 								Animal(const Animal& other);
 			Animal				&operator=(const Animal& other);
 
-			virtual		void	makeSound();
+			std::string			getType() const;
+			void				setType(const std::string& type);
+
+			
+			virtual		void	makeSound() const;
 
 	protected:
-			std::string			type;
+			std::string			_type;
 };
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: demrodri <demrodri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: demacinema <demacinema@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 17:02:27 by demrodri          #+#    #+#             */
-/*   Updated: 2025/01/04 20:12:52 by demrodri         ###   ########.fr       */
+/*   Updated: 2025/01/08 23:35:33 by demacinema       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class Cat : public Animal
 						Cat(const Cat& other);
 			Cat			&operator=(const Cat& other);
 
-			void		makeSound();
+			void		makeSound() const;
 };
 
 #endif

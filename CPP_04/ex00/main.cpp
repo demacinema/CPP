@@ -6,9 +6,33 @@
 /*   By: demacinema <demacinema@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 22:37:24 by demacinema        #+#    #+#             */
-/*   Updated: 2024/11/20 22:37:25 by demacinema       ###   ########.fr       */
+/*   Updated: 2025/01/09 00:41:05 by demacinema       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "Animal.hpp"
+#include "Cat.hpp"
+#include "Dog.hpp"
+#include "WrongAnimal.hpp"
+#include "WrongCat.hpp"
+
+// int main()
+// {
+// std::cout << "--------------------------------------------" << std::endl;
+// 	Animal animal;
+// std::cout << "--------------------------------------------" << std::endl;
+// 	Cat cat;
+// 	Cat scat("Scat");
+// std::cout << "--------------------------------------------" << std::endl;
+// 	Dog dog;
+// 	Dog sdog("Sdog");
+// std::cout << "--------------------------------------------" << std::endl;
+// 	animal.makeSound();
+// 	cat.makeSound();
+// 	dog.makeSound();
+// std::cout << "--------------------------------------------" << std::endl;
+// 	return (EXIT_SUCCESS);
+// }
 
 #include "Cat.hpp"
 #include "Dog.hpp"
