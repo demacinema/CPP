@@ -6,7 +6,7 @@
 /*   By: demacinema <demacinema@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 17:02:16 by demrodri          #+#    #+#             */
-/*   Updated: 2025/01/09 00:40:49 by demacinema       ###   ########.fr       */
+/*   Updated: 2025/01/09 01:17:08 by demacinema       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,25 +41,39 @@
 
 int main()
 {
-	const Animal		*specie = new Animal();
+	const Animal		*animal = new Animal();
+std::cin.get();
 	const Animal		*cat = new Cat();
+std::cin.get();
 	const Animal		*dog = new Dog();
-	const WrongAnimal	*wrongspecie = new WrongAnimal();
+std::cin.get();
+	const WrongAnimal	*wronganimal = new WrongAnimal();
+std::cin.get();
 	const WrongAnimal	*wrongCat = new WrongCat();
+std::cin.get();
 	
-	std::cout << "Animal : " << specie->getType() << std::endl;
-	specie->makeSound();
+	std::cout << "Animal : " << animal->getType() << std::endl;
+	animal->makeSound();
+std::cin.get();
 	std::cout << "Animal : " << cat->getType() << std::endl;
 	cat->makeSound();
+std::cin.get();
 	std::cout << "Animal : " << dog->getType() << std::endl;
 	dog->makeSound();
-	std::cout << "Wrong Animal : " << wrongspecie->getType() << std::endl;
-	wrongspecie->makeSound();
+std::cin.get();
+	std::cout << "Wrong Animal : " << wronganimal->getType() << std::endl;
+	wronganimal->makeSound();
+std::cin.get();
 	std::cout << "Wrong cat : " << wrongCat->getType() << std::endl;
 	wrongCat->makeSound();
+std::cin.get();
 	delete(dog);
+std::cin.get();
 	delete(cat);
+std::cin.get();
 	delete(wrongCat);
-	delete(wrongspecie);
-	delete(specie);
+std::cin.get();
+	delete(wronganimal);
+std::cin.get();
+	delete(animal);
 }

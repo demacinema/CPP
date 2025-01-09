@@ -6,7 +6,7 @@
 /*   By: demacinema <demacinema@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 17:02:24 by demrodri          #+#    #+#             */
-/*   Updated: 2025/01/09 00:20:54 by demacinema       ###   ########.fr       */
+/*   Updated: 2025/01/09 01:18:44 by demacinema       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ Dog::Dog(const std::string &name) //: _type(name)
 
 Dog::~Dog()
 {
+	std::cout << "--------------------------------------------" << std::endl;
 	std::cout << "Destructor of DOG called" << std::endl;
 	std::cout << "--------------------------------------------" << std::endl;
 }

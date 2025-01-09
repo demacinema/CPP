@@ -6,7 +6,7 @@
 /*   By: demacinema <demacinema@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 17:08:20 by demrodri          #+#    #+#             */
-/*   Updated: 2025/01/09 00:33:28 by demacinema       ###   ########.fr       */
+/*   Updated: 2025/01/09 01:15:48 by demacinema       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ class WrongAnimal
 			void 			setType(std::string type);
 			std::string		getType() const;
 
-			void			makeSound() const;
+			virtual void	makeSound() const;
 
 	protected:
 		std::string 		_type;

@@ -6,7 +6,7 @@
 /*   By: demacinema <demacinema@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 17:08:23 by demrodri          #+#    #+#             */
-/*   Updated: 2025/01/09 00:48:10 by demacinema       ###   ########.fr       */
+/*   Updated: 2025/01/09 01:19:19 by demacinema       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ WrongCat::WrongCat(const std::string &name) //: _type(name)
 
 WrongCat::~WrongCat()
 {
+	std::cout << "--------------------------------------------" << std::endl;
 	std::cout << "Destructor of WRONGCAT called" << std::endl;
 	std::cout << "--------------------------------------------" << std::endl;
 }

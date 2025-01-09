@@ -6,7 +6,7 @@
 /*   By: demacinema <demacinema@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 16:50:22 by demrodri          #+#    #+#             */
-/*   Updated: 2025/01/09 01:03:06 by demacinema       ###   ########.fr       */
+/*   Updated: 2025/01/09 01:20:32 by demacinema       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ Animal::Animal(const std::string &name) : _type(name)
 
 Animal::~Animal()
 {
+	std::cout << "--------------------------------------------" << std::endl;
 	std::cout << "Destructor of ANIMAL called" << std::endl;
 	std::cout << "--------------------------------------------" << std::endl;
 	// delete(this); ?????

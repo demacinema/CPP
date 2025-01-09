@@ -6,7 +6,7 @@
 /*   By: demacinema <demacinema@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 17:02:29 by demrodri          #+#    #+#             */
-/*   Updated: 2025/01/08 23:35:54 by demacinema       ###   ########.fr       */
+/*   Updated: 2025/01/09 01:19:04 by demacinema       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ Cat::Cat(const std::string &name) //: _type(name)
 
 Cat::~Cat()
 {
+	std::cout << "--------------------------------------------" << std::endl;
 	std::cout << "Destructor of CAT called" << std::endl;
 	std::cout << "--------------------------------------------" << std::endl;
 }
