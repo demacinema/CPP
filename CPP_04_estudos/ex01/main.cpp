@@ -6,7 +6,7 @@
 /*   By: demacinema <demacinema@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 17:02:16 by demrodri          #+#    #+#             */
-/*   Updated: 2025/01/12 01:05:51 by demacinema       ###   ########.fr       */
+/*   Updated: 2025/01/12 01:12:18 by demacinema       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int main()
 std::cin.get();
 	{
 	Dog tmp = basic;
-	}//insert a scope to be destroyed
+	}//insert a scope to be destroyed after leaving it
 
 	std::cout << "\n--ARRAY OF ANIMALS" << std::endl;
 	Animal *animal[4];
