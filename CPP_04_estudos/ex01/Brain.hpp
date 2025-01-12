@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: demacinema <demacinema@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/04 17:02:20 by demrodri          #+#    #+#             */
-/*   Updated: 2025/01/12 01:02:07 by demacinema       ###   ########.fr       */
+/*   Created: 2025/01/09 01:32:48 by demacinema        #+#    #+#             */
+/*   Updated: 2025/01/12 00:07:09 by demacinema       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef DOG_HPP
-#  define DOG_HPP
+#ifndef BRAIN_HPP
+# define BRAIN_HPP
 
-# include "Animal.hpp"
+#include <iostream>
 
-class Dog : public Animal
+class Brain
 {
-	private:
-			Brain		*_brain;
-
 	public:
-						Dog();
-						Dog(const std::string &name);
-						~Dog();
-						Dog(const Dog& other);
-			Dog			&operator=(const Dog& other);
-
-			void		makeSound() const;
+							Brain();
+		virtual				~Brain();
+		
+							Brain(const Brain& other);
+		Brain&				operator=(const Brain& other);
+		
+		// std::string			getType() const;
+		// void				setType(const std::string& type);
+		
+	// private:
+		std::string			ideas[100];
 };
-
-#endif
+# endif

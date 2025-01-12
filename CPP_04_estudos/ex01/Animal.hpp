@@ -6,12 +6,14 @@
 /*   By: demacinema <demacinema@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 16:40:15 by demrodri          #+#    #+#             */
-/*   Updated: 2025/01/08 23:48:32 by demacinema       ###   ########.fr       */
+/*   Updated: 2025/01/12 00:21:13 by demacinema       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # ifndef ANIMAL_HPP
 #  define ANIMAL_HPP
+
+#include "Brain.hpp"
 
 # include <iostream>
 // # include <string>
