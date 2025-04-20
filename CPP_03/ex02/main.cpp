@@ -53,7 +53,7 @@ int main()
 	std::cin.get();
 
 	std::cout << ">>>CLAP ATTACK\n";
-		Clap.setAd(2);
+		Clap.setAd(-2);
 		Clap.attack(Frag.getName());
 		Frag.takeDamage(Clap.getAd());
 		std::cout << Clap.getName() << " stats" << std::endl;
