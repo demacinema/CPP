@@ -6,12 +6,9 @@
 /*   By: demetriorodrigues <demetriorodrigues@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 21:16:43 by demetriorod       #+#    #+#             */
-/*   Updated: 2025/04/20 21:39:51 by demetriorod      ###   ########.fr       */
+/*   Updated: 2025/04/20 23:10:03 by demetriorod      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-// #include "FragTrap.hpp"
-// #include "ScavTrap.hpp"
 
 #include "Bureaucrat.hpp"
 
