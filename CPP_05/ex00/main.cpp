@@ -3,68 +3,146 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: demetriorodrigues <demetriorodrigues@st    +#+  +:+       +#+        */
+/*   By: demrodri <demrodri@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 21:16:43 by demetriorod       #+#    #+#             */
-/*   Updated: 2025/04/20 23:10:03 by demetriorod      ###   ########.fr       */
+/*   Updated: 2025/04/24 17:51:52 by demrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
-int main() {
-	Bureaucrat jaemjung("jaemjung", 1);
-	Bureaucrat w("whoever", 150);
+int main()
+{
+	Bureaucrat kafka("Kafka", 1);
+	Bureaucrat merkel("Merkel", 150);
+	Bureaucrat noparameter;
 
-	std::cout << jaemjung << std::endl;
-	try {
-		std::cout << "try to increment jaemjung's grade." << std::endl;
-		jaemjung.incrementGrade();
-	} catch (std::exception &e) {
-		std::cout << e.what() << std::endl;
+std::cin.get();
+	try
+	{
+		std::cout << "TEST: GRADE INCREMENT >> " << kafka << std::endl;
+		kafka.incrementGrade();
 	}
-	std::cout << jaemjung <<std::endl;
-	try {
-		std::cout << "try to decrement jaemjung's grade." << std::endl;
-		jaemjung.decrementGrade();
-	} catch (std::exception &e) {
-		std::cout << e.what() << std::endl;
+	catch (const Bureaucrat::GradeTooHighException &e) //specific exception
+	{
+		std::cerr << e.what() << std::endl;
 	}
-	std::cout << jaemjung << std::endl;
-	Bureaucrat copy(jaemjung);
-	Bureaucrat copy2 = jaemjung;
-	std::cout << copy << std::endl;
-	std::cout << copy2 << std::endl;
-	std::cout << std::endl;
-
-	std::cout << w << std::endl;
-	try {
-		std::cout << "try to decrement whoever's grade." << std::endl;
-		w.decrementGrade();
-	} catch (std::exception &e) {
-		std::cout << e.what() << std::endl;
+	catch (const Bureaucrat::GradeTooLowException &e) //specific exception
+	{
+		std::cerr << e.what() << std::endl;
 	}
-	std::cout << w <<std::endl;
-	try {
-		std::cout << "try to increment whoever's grade." << std::endl;
-		w.incrementGrade();
-	} catch (std::exception &e) {
-		std::cout << e.what() << std::endl;
-	}
-	std::cout << w << std::endl;
-	std::cout << std::endl;
-
-	try {
-		std::cout << "try to make Bureaucrat with lower than minimum grade" <<std::endl;
-		Bureaucrat someOne("someOne", 151);
-	} catch (std::exception &e) {
-		std::cout << e.what() << std::endl;
+	catch (std::exception &e) //general exception
+	{
+		std::cerr << e.what() << std::endl;
 	}
 
-	try {
-		std::cout << "try to make Bureaucrat with lower than maximum grade" <<std::endl;
-		Bureaucrat someOne2("someOne2", 0);
-	} catch (std::exception &e) {
-		std::cout << e.what() << std::endl;
+std::cin.get();
+	try
+	{
+		std::cout << "TEST: GRADE DECREMENT >> " << kafka << std::endl;
+		kafka.decrementGrade();
+		std::cout << kafka << std::endl;
+	}
+	catch (const Bureaucrat::GradeTooHighException &e) //specific exception
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	catch (const Bureaucrat::GradeTooLowException &e) //specific exception
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	catch (std::exception &e) //general exception
+	{
+		std::cerr << e.what() << std::endl;
+	}
+
+std::cin.get();
+	Bureaucrat normalcopy(kafka);
+	Bureaucrat operatorcopy = kafka;
+	std::cout << normalcopy << std::endl;
+	std::cout << operatorcopy << std::endl << std::endl;
+
+std::cin.get();
+	std::cout << merkel << std::endl;
+	try
+	{
+		std::cout << "TEST: GRADE DECREMENT >> " << merkel << std::endl;
+		merkel.decrementGrade();
+		std::cout << merkel << std::endl;
+	}
+	catch (const Bureaucrat::GradeTooHighException &e) //specific exception
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	catch (const Bureaucrat::GradeTooLowException &e) //specific exception
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	catch (std::exception &e) //general exception
+	{
+		std::cerr << e.what() << std::endl;
+	}
+
+std::cin.get();	
+	try
+	{
+		std::cout << "TEST: GRADE INCREMENT >> " << merkel << std::endl;
+		merkel.incrementGrade();
+		std::cout << merkel << std::endl;
 	} 
+	catch (const Bureaucrat::GradeTooHighException &e) //specific exception
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	catch (const Bureaucrat::GradeTooLowException &e) //specific exception
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	catch (std::exception &e) //general exception
+	{
+		std::cerr << e.what() << std::endl;
+	}
+
+std::cin.get();
+	try
+	{
+		std::cout << "TEST: LOWER THAN MINIMAL " << std::endl;
+		Bureaucrat lower("Lower", 151);
+		std::cout << lower << std::endl;
+	}
+	catch (const Bureaucrat::GradeTooHighException &e) //specific exception
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	catch (const Bureaucrat::GradeTooLowException &e) //specific exception
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	catch (std::exception &e) //general exception
+	{
+		std::cerr << e.what() << std::endl;
+	}
+
+std::cin.get();
+	try
+	{
+		std::cout << "TEST: BIGGER THAN MAXIMAL " <<std::endl;
+		Bureaucrat maximal("Maximal", 0);
+		std::cout << maximal << std::endl;
+	}
+	catch (const Bureaucrat::GradeTooHighException &e) //specific exception
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	catch (const Bureaucrat::GradeTooLowException &e) //specific exception
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	catch (std::exception &e) //general exception
+	{
+		std::cerr << e.what() << std::endl;
+	}	
 }
+
+// CHECK IF DESTRUCTORS IS BEHAVING CORRECTLY!!

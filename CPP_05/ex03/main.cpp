@@ -6,7 +6,7 @@
 /*   By: demetriorodrigues <demetriorodrigues@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 22:27:48 by demetriorod       #+#    #+#             */
-/*   Updated: 2025/04/20 22:28:03 by demetriorod      ###   ########.fr       */
+/*   Updated: 2025/04/23 23:16:23 by demetriorod      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,33 +16,33 @@
 #include "Intern.hpp"
 
 void test() {
-	Bureaucrat jaemjung("jaemjung", 5);
+	Bureaucrat kafka("kafka", 5);
 	Intern someIntern;
 
 	Form* shrubbery = someIntern.makeForm("shrubbery creation", "GAEPO");
 	Form* robotomy = someIntern.makeForm("robotomy request", "GEAPO");
-	Form* pp = someIntern.makeForm("presidential pardon", "JAEMJUNG");
-	someIntern.makeForm("makeMoney request", "JAEMJUNG");
+	Form* pp = someIntern.makeForm("presidential pardon", "kafka");
+	someIntern.makeForm("makeMoney request", "kafka");
 
-	std::cout << jaemjung << std::endl;
+	std::cout << kafka << std::endl;
 	std::cout << std::endl;
 
 	std::cout << *shrubbery << std::endl;
-	jaemjung.signForm(*shrubbery);
+	kafka.signForm(*shrubbery);
 	std::cout << *shrubbery << std::endl;
-	jaemjung.executeForm(*shrubbery);
+	kafka.executeForm(*shrubbery);
 	std::cout << std::endl;
 
 	std::cout << *robotomy << std::endl;
-	jaemjung.signForm(*robotomy);
+	kafka.signForm(*robotomy);
 	std::cout << *robotomy << std::endl;
-	jaemjung.executeForm(*robotomy);
+	kafka.executeForm(*robotomy);
 	std::cout << std::endl;
 
 	std::cout << *pp << std::endl;
-	jaemjung.signForm(*pp);
+	kafka.signForm(*pp);
 	std::cout << *pp << std::endl;
-	jaemjung.executeForm(*pp);
+	kafka.executeForm(*pp);
 	std::cout << std::endl;
 
 	delete shrubbery;

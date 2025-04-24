@@ -6,14 +6,14 @@
 /*   By: demetriorodrigues <demetriorodrigues@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 22:17:57 by demetriorod       #+#    #+#             */
-/*   Updated: 2025/04/20 22:17:59 by demetriorod      ###   ########.fr       */
+/*   Updated: 2025/04/23 23:28:37 by demetriorod      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
 
 int main() {
-	Bureaucrat jaemjung("jaemjung", 10);
+	Bureaucrat kafka("kafka", 10);
 	Form sellAPPL("sellAPPL", 9, 9);
 
 	try {
@@ -28,22 +28,22 @@ int main() {
 		std::cout << e.what() << std::endl;
 	}
 
-	std::cout << jaemjung << std::endl;
+	std::cout << kafka << std::endl;
 	std::cout << sellAPPL << std::endl;
 
-	jaemjung.signForm(sellAPPL);
+	kafka.signForm(sellAPPL);
 	std::cout << sellAPPL << std::endl;
 	try {
-		jaemjung.incrementGrade();
+		kafka.incrementGrade();
 	} catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
-	std::cout << jaemjung << std::endl;
-	jaemjung.signForm(sellAPPL);
+	std::cout << kafka << std::endl;
+	kafka.signForm(sellAPPL);
 	std::cout << sellAPPL << std::endl;
 
-	Form copy = sellAPPL;
+	Form normalcopy = sellAPPL;
 	Form copy2(sellAPPL);
-	std::cout << copy << std::endl;
+	std::cout << normalcopy << std::endl;
 	std::cout << copy2 << std::endl;
 }
