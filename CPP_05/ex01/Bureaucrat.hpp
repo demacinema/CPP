@@ -6,7 +6,7 @@
 /*   By: demrodri <demrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 18:56:26 by demrodri          #+#    #+#             */
-/*   Updated: 2025/06/03 18:56:29 by demrodri         ###   ########.fr       */
+/*   Updated: 2025/06/03 19:01:19 by demrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include <exception>
 #include "Form.hpp"
 
-class Form; // include forward declaration to avoid circular dependency: it is needed to declare the Form class before using it in Bureaucrat
+class Form; // include forward declaration to avoid circular dependency: it is needed to declare the Form class before using in Bureaucrat
 
 class Bureaucrat
 {
