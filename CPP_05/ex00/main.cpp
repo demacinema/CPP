@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: demrodri <demrodri@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: demrodri <demrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 00:55:06 by demrodri          #+#    #+#             */
-/*   Updated: 2025/06/03 00:55:10 by demrodri         ###   ########.fr       */
+/*   Updated: 2025/06/03 18:32:07 by demrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,15 @@ int main()
 {
 	Bureaucrat kafka("Kafka", 1);
 	Bureaucrat merkel("Merkel", 150);
-	Bureaucrat noparameter;
-
+	// Bureaucrat noparametertest; //not possible, as it is forbidden to create a Bureaucrat without parameters
+	// Grade will be checked on the construction by the method checkGrade
+	
 std::cin.get();
 	try
 	{
 		std::cout << "TEST: GRADE INCREMENT >> " << kafka << std::endl;
 		kafka.incrementGrade();
+		std::cout << kafka << std::endl;
 	}
 	catch (const Bureaucrat::GradeTooHighException &e) //specific exception
 	{
@@ -59,7 +61,9 @@ std::cin.get();
 
 std::cin.get();
 	Bureaucrat normalcopy(kafka);
-	Bureaucrat operatorcopy = kafka;
+	Bureaucrat operatorcopy("maria", 50);
+	operatorcopy = normalcopy; //will have the grade of kafka, but not the name (as it is const and can only be set at contruction)
+	
 	std::cout << normalcopy << std::endl;
 	std::cout << operatorcopy << std::endl << std::endl;
 
@@ -129,7 +133,7 @@ std::cin.get();
 	{
 		std::cout << "TEST: BIGGER THAN MAXIMAL " <<std::endl;
 		Bureaucrat maximal("Maximal", 0);
-		std::cout << maximal << std::endl;
+		std::cout << maximal << std::endl << std::endl;
 	}
 	catch (const Bureaucrat::GradeTooHighException &e) //specific exception
 	{
@@ -142,7 +146,8 @@ std::cin.get();
 	catch (std::exception &e) //general exception
 	{
 		std::cerr << e.what() << std::endl;
-	}	
+	}
+	
 }
 
 // CHECK IF DESTRUCTORS IS BEHAVING CORRECTLY!!

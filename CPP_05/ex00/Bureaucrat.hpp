@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: demrodri <demrodri@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: demrodri <demrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 21:33:07 by demrodri          #+#    #+#             */
-/*   Updated: 2025/06/03 01:11:21 by demrodri         ###   ########.fr       */
+/*   Updated: 2025/06/03 18:08:19 by demrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@
 class Bureaucrat
 {
 	private:
+		Bureaucrat(); // Default Constructor as private, to prevent its use and create a Bureaucrat without name and grade
 		const std::string _name;
 		int _grade;
 		void checkGrade(int grade) const;
 
 	public:
-		Bureaucrat(); // Default Constructor
 		Bureaucrat(std::string name, int grade); // Parameterized Constructor
 		~Bureaucrat(); // Destructor
 		

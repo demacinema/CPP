@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: demrodri <demrodri@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: demrodri <demrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 21:32:59 by demrodri          #+#    #+#             */
-/*   Updated: 2025/04/24 17:47:43 by demrodri         ###   ########.fr       */
+/*   Updated: 2025/06/03 18:29:03 by demrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,38 +22,25 @@ void Bureaucrat::checkGrade(int grade) const
 
 Bureaucrat::Bureaucrat() : _name("Burrocrata"), _grade(150)
 {
-	std::cout << "Default Constructor: " << _name << " " << _grade << std::endl;
 	checkGrade(_grade);
+	std::cout << "Default Constructor: " << _name << " " << _grade << std::endl;
 }
 
 Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name), _grade(grade)
 {
-	std::cout << "Parameterized Constructor: " << _name << " " << _grade << std::endl;
 	checkGrade(_grade);
-	// QUANDO INICIALIZA COM PARAMETROS, JÁ CHECA!
-	// if (_grade > 150)
-	// {
-	// 	throw GradeTooLowException();
-	// }
-	// else if (grade < 1)
-	// {
-	// 	throw GradeTooHighException();		
-	// }
+	std::cout << "Parameterized Constructor: " << _name << " " << _grade << std::endl;
 }
 
 Bureaucrat::~Bureaucrat()
 {
-	std::cout << "Bye from Bureaucrat Destructor of " << getName() << std::endl;
+	std::cout << std::endl << "Bye from Bureaucrat Destructor of " << getName() << std::endl;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat& other) : _name(other.getName()), _grade(other.getGrade())
 {
-	std::cout << "Bureaucrat copy constructor activated!" << std::endl;
 	checkGrade(_grade);
-	// _name = other.getName(); //cant do this as _name is const
-	// _grade = other.getGrade();
-	// *this = other; //cant do this as _name is const and must be initialized when constructed
-                      //this would use the assignment operator, which will not copy values of const variables
+	std::cout << "Bureaucrat copy constructor activated!" << std::endl;
 }
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
@@ -61,11 +48,12 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
 	std::cout << "Bureaucrat Assignment Operator!" << std::endl;
 	if (this != &other) // Avoid self-assignment 
 	{
+		checkGrade(_grade);
 		// _name = other.getName(); //Const string cannot be assigned
 		_grade = other.getGrade();
-		checkGrade(_grade);
 	}
 	
+	// a way to assign const string, but not correct aproach
 	// if (this != &other)
 	// {
 	// 	*(const_cast<std::string*>(&_name)) = other.getName();
@@ -90,21 +78,23 @@ int Bureaucrat::getGrade() const
 // GRADE MANIPULATORS
 void Bureaucrat::decrementGrade() //increases Grade, as 150 is the lowest
 {
+	// Below statements changed by method checkGrade
 	// if (_grade + 1 > 150) //OR _grade = 150
 	// 	throw GradeTooLowException();
-	checkGrade(_grade + 1);
+	checkGrade(_grade + 1); // check with "+ 1" to ensure the grade is within limits
 	_grade += 1;
 }
 
 void Bureaucrat::incrementGrade() //diminishes Grade, as 1 is the highest
 {
+	// Below statements changed by method checkGrade
 	// if (_grade - 1 < 1) //OR _grade = 1
 	// 	throw GradeTooHighException();
-	checkGrade(_grade - 1);
+	checkGrade(_grade - 1); // check with "- 1" to ensure the grade is within limits
 	_grade -= 1;
 }
 
-// EXCEPTIONS
+// EXCEPTIONS what() - returns a message when an exception is thrown
 const char* Bureaucrat::GradeTooHighException::what() const throw()
 {
 	return "TOO HIGH GRADE!";

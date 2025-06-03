@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: demrodri <demrodri@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: demrodri <demrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/03 00:53:06 by demrodri          #+#    #+#             */
-/*   Updated: 2025/06/03 01:24:01 by demrodri         ###   ########.fr       */
+/*   Created: 2025/06/03 14:48:23 by demrodri          #+#    #+#             */
+/*   Updated: 2025/06/03 14:48:27 by demrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
