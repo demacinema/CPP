@@ -3,62 +3,78 @@
 /*                                                        :::      ::::::::   */
 /*   Form.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: demetriorodrigues <demetriorodrigues@st    +#+  +:+       +#+        */
+/*   By: demrodri <demrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/20 22:19:35 by demetriorod       #+#    #+#             */
-/*   Updated: 2025/04/20 22:19:37 by demetriorod      ###   ########.fr       */
+/*   Created: 2025/06/07 00:16:11 by demrodri          #+#    #+#             */
+/*   Updated: 2025/06/07 03:12:02 by demrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __FORM_H__
-#define __FORM_H__
+//DEFINES
+#ifndef FORM_HPP
+# define FORM_HPP
 
+//INCLUDES
 #include <string>
 #include <iostream>
 #include <exception>
 #include "Bureaucrat.hpp"
 
+//PRELOAD
 class Bureaucrat;
 
-class Form {
+//CREATE
+class Form
+{
 	private:
+	//CONSTRUCTORS
 		Form();
-		const std::string _name;
-		const int _gradeSign;
-		const int _gradeExecute;
-		std::string _target;
-		bool _isSigned;
-	
+
+	//ATTRIBUTES
+		const	std::string _name;
+		bool	_isSigned;
+		const	int _gradeSign;
+		const	int _gradeExec;
+
 	public:
-		std::string getName() const;
-		std::string getTarget() const;
-		bool isSigned() const;
-		int getSignGrade() const;
-		int getExecuteGrade() const;
-		void beSigned(const Bureaucrat& bc);
-		void checkExecutability(const Bureaucrat& executor) const;
+	//CONTRUCTORS
+		Form(std::string name, int gradeSign, int gradeExec);
+		~Form();
 
-		virtual void execute(const Bureaucrat& executor) const = 0;
 
-		class GradeTooHighException : public std::exception {
-			public:
-				const char* what() const throw();
-		};
-		class GradeTooLowException : public std::exception {
-			public:
-				const char* what() const throw();
-		};
-		class FormNotSignedException : public std::exception {
-			public:
-				const char* what() const throw();
-		};
-	
-		Form& operator=(const Form& other);
-		Form(std::string name, std::string target, int gradeSign, int gradeExecute);
+	//COPY CONSTRUCTORS
 		Form(const Form& other);
-		virtual ~Form();
+		Form& operator=(const Form& other);
+
+	//GETTERS
+		std::string	getName() const;
+		bool		getIsSigned() const;
+		int		getGradeSign() const;
+		int		getGradeExec() const;
+
+	//MANIPULATIVE METHODS
+		void		beSigned(const Bureaucrat& bureau);
+		void		checkGradeForm(const int gradeSign, const int gradeExec);
+		
+	//EXCEPTIONS
+		class GradeTooHighException : public std::exception
+		{
+			public:
+				const char* what() const throw();
+		};
+		class GradeTooLowException : public std::exception
+		{
+			public:
+				const char* what() const throw();
+		};
+		class GradeNotValidException : public std::exception
+		{
+			public:
+				const char* what() const throw();
+		};
 };
 
+//OUTPUT OVERLOAD
 std::ostream& operator<<(std::ostream& os, const Form& form);
 
-#endif // __FORM_H__
+#endif

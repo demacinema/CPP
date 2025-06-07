@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: demrodri <demrodri@student.42.fr>          +#+  +:+       +#+         #
+#    By: demetriorodrigues <demetriorodrigues@st    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/20 22:25:35 by demetriorod       #+#    #+#              #
-#    Updated: 2025/06/07 04:19:16 by demrodri         ###   ########.fr        #
+#    Updated: 2025/04/20 22:25:38 by demetriorod      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= intern
+NAME	= form
 
 SRC	=	$(wildcard *.cpp)
 OBJ	=	$(SRC:.cpp=.o)

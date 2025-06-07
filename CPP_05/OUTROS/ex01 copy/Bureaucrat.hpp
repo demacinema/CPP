@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: demrodri <demrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/20 21:33:07 by demrodri          #+#    #+#             */
-/*   Updated: 2025/06/06 22:27:35 by demrodri         ###   ########.fr       */
+/*   Created: 2025/06/03 18:56:26 by demrodri          #+#    #+#             */
+/*   Updated: 2025/06/03 19:01:19 by demrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,34 +18,34 @@
 #include <exception>
 #include "Form.hpp"
 
-class Form;
+class Form; // include forward declaration to avoid circular dependency: it is needed to declare the Form class before using in Bureaucrat
 
 class Bureaucrat
 {
 	private:
-		Bureaucrat(); // Default Constructor as private, to prevent its use and create a Bureaucrat without name and grade
+		Bureaucrat(); // Default Constructor, now as private to prevent instantiation without parameters
 		const std::string _name;
 		int _grade;
-		void checkGrade(int grade) const;
 
 	public:
 		Bureaucrat(std::string name, int grade); // Parameterized Constructor
 		~Bureaucrat(); // Destructor
-		
+
 		Bureaucrat(const Bureaucrat& other); // Copy Constructor
 		Bureaucrat& operator=(const Bureaucrat& other); // Assignment Operator
-
+	
 	//	GETTERS
-		// std::string getName() const;
+		std::string getName() const;
 		int getGrade() const;
-		const std::string getName() const;
-
-	//	METHODS
-		void decrementGrade();
-		void incrementGrade();
+		
+	// 	GRADE CHECKER
 		void signForm(Form& form) const;
 
-	//	EXCEPTIONS
+	// GRADE MANIPULATORS
+		void decrementGrade();
+		void incrementGrade();
+
+	// EXCEPTIONS
 		class GradeTooHighException : public std::exception
 		{
 			public:

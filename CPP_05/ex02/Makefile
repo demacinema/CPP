@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: demetriorodrigues <demetriorodrigues@st    +#+  +:+       +#+         #
+#    By: demrodri <demrodri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/20 22:23:28 by demetriorod       #+#    #+#              #
-#    Updated: 2025/04/20 22:23:46 by demetriorod      ###   ########.fr        #
+#    Updated: 2025/06/07 04:18:26 by demrodri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= form
+NAME	= aform
 
 SRC	=	$(wildcard *.cpp)
 OBJ	=	$(SRC:.cpp=.o)
