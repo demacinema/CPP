@@ -6,7 +6,7 @@
 /*   By: demrodri <demrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 21:32:59 by demrodri          #+#    #+#             */
-/*   Updated: 2025/06/07 03:31:42 by demrodri         ###   ########.fr       */
+/*   Updated: 2025/06/07 23:01:42 by demrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
 	std::cout << "Bureaucrat Assignment Operator!" << std::endl;
 	if (this != &other)
 	{
-		checkGrade(_grade);
+		checkGrade(other.getGrade());
 		// _name = other.getName(); //Const string cannot be assigned
 		_grade = other.getGrade();
 	}
@@ -80,7 +80,7 @@ void Bureaucrat::incrementGrade() //diminishes Grade, as 1 is the highest
 	_grade -= 1;
 }
 
-void	Bureaucrat::signForm(Form& form) const
+void	Bureaucrat::signForm(AForm& form) const
 {
 	try
 	{
@@ -91,6 +91,19 @@ void	Bureaucrat::signForm(Form& form) const
 	{
 		std::cout << _name << " couldn't sign " << form.getName() 
 					<< " because " << e.what() << std::endl;
+	}
+}
+
+void	Bureaucrat::executeForm(const AForm& form) const
+{
+	try
+	{
+		form.execute(*this);
+		std::cout << _name << " executed " << form.getName() << std::endl;
+	}
+	catch (std::exception& e)
+	{
+		std::cout << _name << " could not execute " << form.getName() << " because " << e.what() << std::endl;
 	}
 }
 

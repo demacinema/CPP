@@ -6,7 +6,7 @@
 /*   By: demrodri <demrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 00:55:06 by demrodri          #+#    #+#             */
-/*   Updated: 2025/06/03 18:32:07 by demrodri         ###   ########.fr       */
+/*   Updated: 2025/06/07 21:23:41 by demrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int main()
 {
-	Bureaucrat kafka("Kafka", 1);
+	Bureaucrat merz("Merz", 1);
 	Bureaucrat merkel("Merkel", 150);
 	// Bureaucrat noparametertest; //not possible, as it is forbidden to create a Bureaucrat without parameters
 	// Grade will be checked on the construction by the method checkGrade
@@ -22,9 +22,9 @@ int main()
 std::cin.get();
 	try
 	{
-		std::cout << "TEST: GRADE INCREMENT >> " << kafka << std::endl;
-		kafka.incrementGrade();
-		std::cout << kafka << std::endl;
+		std::cout << "TEST: GRADE INCREMENT >> " << merz << std::endl;
+		merz.incrementGrade();
+		std::cout << merz << std::endl;
 	}
 	catch (const Bureaucrat::GradeTooHighException &e) //specific exception
 	{
@@ -42,9 +42,9 @@ std::cin.get();
 std::cin.get();
 	try
 	{
-		std::cout << "TEST: GRADE DECREMENT >> " << kafka << std::endl;
-		kafka.decrementGrade();
-		std::cout << kafka << std::endl;
+		std::cout << "TEST: GRADE DECREMENT >> " << merz << std::endl;
+		merz.decrementGrade();
+		std::cout << merz << std::endl;
 	}
 	catch (const Bureaucrat::GradeTooHighException &e) //specific exception
 	{
@@ -60,7 +60,7 @@ std::cin.get();
 	}
 
 std::cin.get();
-	Bureaucrat normalcopy(kafka);
+	Bureaucrat normalcopy(merz);
 	Bureaucrat operatorcopy("maria", 50);
 	operatorcopy = normalcopy; //will have the grade of kafka, but not the name (as it is const and can only be set at contruction)
 	
