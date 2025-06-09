@@ -6,7 +6,7 @@
 /*   By: demrodri <demrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 00:15:57 by demrodri          #+#    #+#             */
-/*   Updated: 2025/06/09 22:38:42 by demrodri         ###   ########.fr       */
+/*   Updated: 2025/06/07 03:40:39 by demrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,7 @@ void		Form::beSigned(const Bureaucrat& bureau)
 	if(bureau.getGrade() <= _gradeSign)
 		_isSigned = true;
 	else
-		throw Form::GradeTooLowException();
-		// throw Form::GradeNotValidException();
+		throw Form::GradeNotValidException();
 }
 
 const char*	Form::GradeTooHighException::what() const throw()

@@ -6,7 +6,7 @@
 #    By: demrodri <demrodri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/20 22:25:35 by demetriorod       #+#    #+#              #
-#    Updated: 2025/06/07 04:19:16 by demrodri         ###   ########.fr        #
+#    Updated: 2025/06/09 23:33:49 by demrodri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,3 +36,5 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+
+# valgrind --leak-check=full --show-leak-kinds=all ./[intern]

@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: demrodri <demrodri@student.42.fr>          +#+  +:+       +#+         #
+#    By: demrodri <demrodri@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/04/20 22:23:28 by demetriorod       #+#    #+#              #
-#    Updated: 2025/06/09 23:07:54 by demrodri         ###   ########.fr        #
+#    Created: 2025/06/03 01:52:16 by demrodri          #+#    #+#              #
+#    Updated: 2025/06/03 01:52:19 by demrodri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= aform
+NAME	= form
 
 SRC	=	$(wildcard *.cpp)
 OBJ	=	$(SRC:.cpp=.o)
@@ -36,5 +36,3 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
-
-# valgrind --leak-check=full --show-leak-kinds=all ./[program_name]

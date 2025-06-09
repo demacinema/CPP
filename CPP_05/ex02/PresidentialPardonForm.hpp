@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: demrodri <demrodri@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/09 22:57:40 by demrodri          #+#    #+#             */
+/*   Updated: 2025/06/09 22:57:44 by demrodri         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PRESIDENTIALPARDONFORM_HPP
 # define PRESIDENTIALPARDONFORM_HPP
 
@@ -25,17 +37,5 @@ class PresidentialPardonForm : public AForm
 				const char* what() const throw();
 		};
 };
-
-
-
-
-
-
-
-
-
-
-
-
 
 #endif

@@ -5,12 +5,12 @@
 #                                                     +:+ +:+         +:+      #
 #    By: demrodri <demrodri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/04/20 22:23:28 by demetriorod       #+#    #+#              #
-#    Updated: 2025/06/09 23:07:54 by demrodri         ###   ########.fr        #
+#    Created: 2025/04/20 22:25:35 by demetriorod       #+#    #+#              #
+#    Updated: 2025/06/07 04:19:16 by demrodri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= aform
+NAME	= intern
 
 SRC	=	$(wildcard *.cpp)
 OBJ	=	$(SRC:.cpp=.o)
@@ -36,5 +36,3 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
-
-# valgrind --leak-check=full --show-leak-kinds=all ./[program_name]
