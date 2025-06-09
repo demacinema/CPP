@@ -6,7 +6,7 @@
 /*   By: demrodri <demrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 22:12:26 by demrodri          #+#    #+#             */
-/*   Updated: 2025/06/07 22:52:17 by demrodri         ###   ########.fr       */
+/*   Updated: 2025/06/09 18:23:44 by demrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void ShrubberyCreationForm::execute(const Bureaucrat& executor) const
 {
 	checkRequirements(executor);
 
-	std::ofstream output(this->getTarget() + "_shrubbery");//CREATE NEW FILE
+	std::ofstream output((this->getTarget() + "_shrubbery").c_str());//CREATE NEW FILE (the .c_str() - converts std::string to const char* - and is because std::ofstream in Linux does not have a constructor that takes string)
 	std::ifstream input("shrubbery");//OPEN FILE FOR READING
 
 	std::string line;
