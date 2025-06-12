@@ -6,7 +6,7 @@
 /*   By: demrodri <demrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 17:52:46 by demrodri          #+#    #+#             */
-/*   Updated: 2025/06/07 22:46:53 by demrodri         ###   ########.fr       */
+/*   Updated: 2025/06/12 15:25:10 by demrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,15 @@ class AForm
 	//VIRTUAL FUNCTION TO MAKE IT ABSTRACT
 		virtual void execute(const Bureaucrat& executor) const = 0;
 
-	// THE PRETTIER WAY
-		// void executeForm(const Bureaucrat& executor) const; // Calls form.execute(executor), and handles exceptions
-		// virtual doExecute(const Bureaucrat& executor) const = 0; // Pure virtual function to be implemented by derived classes
+	// THE PRETTIER WAY: THIS WOULD BE THE WAY TO EXECUTE A FORM, BUT IT IS NOT IMPLEMENTED. IT IS BETTER BECAUSE IT KEEPS THE EXECUTION LOGIC IN THE AForm CLASS, AND NOT IN THE DERIVED CLASSES.
 	
+		// IT IS ALWAYS A BETTER PRACTICE TO KEEP THE LOGIC IN THE BASE CLASS, AND THE BEHAVIOR IN THE DERIVED CLASSES.
+		// LOGIC = CHECKING IF THE FORM IS SIGNED, IF THE BUREAUCRAT HAS THE RIGHT GRADE TO EXECUTE IT, ETC. IT IS COMMON TO ALL FORMS, SO IT SHOULD BE IN THE BASE CLASS.
+		// BEHAVIOR = WHAT THE FORM DOES WHEN EXECUTED (E.G., CREATING A SHRUBBERY, PARDONING A PRESIDENT, ETC.). IT IS SPECIFIC TO EACH FORM, SO IT SHOULD BE IN THE DERIVED CLASSES.
+		
+		// void executeForm(const Bureaucrat& executor) const; // Would check requirements and deal with exceptions, then call the virtual execute function specific for each form.
+		// virtual doExecute(const Bureaucrat& executor) const = 0; // Would be the function that does the actual execution of the form, to be implemented by derived classes.
+		
 	//EXCEPTIONS
 		class GradeTooHighException : public std::exception
 		{
