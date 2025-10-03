@@ -9,10 +9,17 @@
 
 class Data
 {
-	public:
-		Data();
-};
+	private:
+		Data(const Data&);
+		Data& operator=(const Data&);
 
+	public:
+		int				rooms;
+		std::string		address;
+
+		Data();
+		~Data();
+};
 std::ostream& operator<<(std::ostream& os, const Data& data);
 
 #endif

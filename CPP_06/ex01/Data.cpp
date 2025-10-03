@@ -4,8 +4,11 @@
 #include "Data.hpp"
 
 Data::Data() {}
+Data::~Data() {}
 
 std::ostream& operator<<(std::ostream& os, const Data& data)
 {
-	return os << "Data address: " << &data << std::endl;
+	return os << "Data address: " << &data << std::endl
+			  << "Rooms: " << data.rooms << std::endl
+			  << "Adress: " << data.address << std::endl;
 }

@@ -5,12 +5,16 @@
 
 uintptr_t Serializer::serialize(Data* ptr)
 {
-	std::cout << "Serializing data..." << std::endl;
+	std::cout << "-------------------" << std::endl
+			  << "Serializing data..." << std::endl
+			  << "-------------------" << std::endl;
 	return reinterpret_cast<uintptr_t>(ptr);
 }
 
 Data* Serializer::deserialize(uintptr_t raw)
 {
-	std::cout << "Deserializing data..." << std::endl;
+	std::cout << "-------------------" << std::endl
+			  << "Deserializing data..." << std::endl
+			  << "-------------------" << std::endl;
 	return reinterpret_cast<Data*>(raw);
 }

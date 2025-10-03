@@ -5,7 +5,7 @@
 # define SERIALIZER_HPP
 
 #include "Data.hpp"
-#include <cstdint>
+#include <cstdint> // for uintptr_t
 
 class Serializer
 {
@@ -16,8 +16,8 @@ class Serializer
 		~Serializer();
 
 	public:
-		static uintptr_t serialize(Data* ptr);
-		static Data* deserialize(uintptr_t raw);
+		static uintptr_t serialize(Data* ptr); // Converts a pointer to an integer type
+		static Data* deserialize(uintptr_t raw); // Converts an integer type back to a pointer
 };
 
 #endif
