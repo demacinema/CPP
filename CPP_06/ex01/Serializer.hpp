@@ -1,30 +1,23 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Serializer.hpp                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: demetriorodrigues <demetriorodrigues@st    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/20 22:33:36 by demetriorod       #+#    #+#             */
-/*   Updated: 2025/04/20 22:33:45 by demetriorod      ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+/* demrodri@student.42wolfsburg.de
+   CPP06 - ex01 - serializer - Serializer.hpp */
 
-#ifndef __SERIALIZER_H__
-#define __SERIALIZER_H__
+#ifndef SERIALIZER_HPP
+# define SERIALIZER_HPP
 
 #include "Data.hpp"
 #include <cstdint>
 
-class Serializer {
+class Serializer
+{
+	private:
+		Serializer();
+		Serializer(const Serializer&);
+		Serializer& operator=(const Serializer&);
+		~Serializer();
+
 	public:
-		uintptr_t serialize(Data* ptr);
-		Data* deserialize(uintptr_t raw);
-	
-	Serializer& operator=(const Serializer&);
-	Serializer();
-	Serializer(const Serializer&);
-	~Serializer();
+		static uintptr_t serialize(Data* ptr);
+		static Data* deserialize(uintptr_t raw);
 };
 
-#endif // __SERIALIZER_H__
+#endif

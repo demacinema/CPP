@@ -1,49 +1,18 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Data.hpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: demetriorodrigues <demetriorodrigues@st    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/20 22:33:03 by demetriorod       #+#    #+#             */
-/*   Updated: 2025/04/20 22:33:05 by demetriorod      ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+/* demrodri@student.42wolfsburg.de
+   CPP06 - ex01 - serializer - Data.hpp */
 
-#ifndef __DATA_H__
-#define __DATA_H__
+#ifndef DATA_HPP
+# define DATA_HPP
 
 #include <iostream>
 #include <string>
 
-class Data {
-	private:
-		std::string _doomName;
-		int _dayLeft;
-		bool _isDoomed;
-		float _doomFactor;
-		double _doomDuration;
-	
+class Data
+{
 	public:
-		std::string getDoomName() const;
-		int getDayLeft() const;
-		bool isDoomed() const;
-		float getDoomFactor() const;
-		double getDoomDuration() const;
-		
-		void setDoomName(std::string doomName);
-		void setDayLeft(int dayLeft);
-		void setDoomed(bool isDoomed);
-		void setDoomFactor(float doomFactor);
-		void setDoomDuration(double doomDuration);
-		
-		Data& operator=(const Data& other);
 		Data();
-		Data(std::string doomName, int dayLeft, bool isDoomed, float doomFactor, double doomDuration);
-		Data(const Data& other);
-		~Data();
 };
 
 std::ostream& operator<<(std::ostream& os, const Data& data);
 
-#endif // __DATA_H__
+#endif

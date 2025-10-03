@@ -1,38 +1,24 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: demetriorodrigues <demetriorodrigues@st    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/20 22:34:02 by demetriorod       #+#    #+#             */
-/*   Updated: 2025/04/20 22:34:04 by demetriorod      ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+/* demrodri@student.42wolfsburg.de
+   CPP06 - ex01 - serializer - main.cpp */
 
 #include "Data.hpp"
 #include "Serializer.hpp"
 
-int main(void) {
+int main(void)
+{
 	Data doom1;
-	Data doom2("Doom", 10, true, 0.5, 10.0);
 
-	Serializer serializer;
+	Serializer::serialize(&doom1);
+	std::cout << "Serialized " << doom1 << std::endl;
+
 	std::cout << doom1 << std::endl;
-	std::cout << doom2 << std::endl;
-	uintptr_t raw1 = serializer.serialize(&doom1);
-	uintptr_t raw2 = serializer.serialize(&doom2);
+	uintptr_t raw1 = Serializer::serialize(&doom1);
 	std::cout << std::endl;
 
-	Data* doom3 = serializer.deserialize(raw1);
-	Data* doom4 = serializer.deserialize(raw2);
+
+	Data* doom3 = Serializer::deserialize(raw1);
 	std::cout << std::endl;
 	
-	std::cout << "-Deserialzed data address-" << std::endl;
-	std::cout << doom3 << std::endl;
-	std::cout << doom4 << std::endl;
-	std::cout << std::endl;
+	std::cout << "- Deserialzed " << doom3 << std::endl;
 	std::cout << *doom3 << std::endl;
-	std::cout << *doom4 << std::endl;
-
 }

@@ -1,23 +1,13 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: demetriorodrigues <demetriorodrigues@st    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/04/20 22:34:32 by demetriorod       #+#    #+#              #
-#    Updated: 2025/04/20 22:34:46 by demetriorod      ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+# /* demrodri@student.42wolfsburg.de
+#    CPP06 - ex01 - serializer - Makefile */
 
-NAME	= serial
+NAME	= serializer
 
 SRC	=	$(wildcard *.cpp)
 OBJ	=	$(SRC:.cpp=.o)
 
 CC	=	c++
 CFLAGS	=	-Wall -Wextra -Werror -std=c++98
-
 
 all: $(NAME)
 
