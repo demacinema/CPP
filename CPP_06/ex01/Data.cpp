@@ -5,6 +5,17 @@
 
 Data::Data() {}
 Data::~Data() {}
+Data::Data(const Data& other) { *this = other; }
+Data& Data::operator=(const Data& other)
+{
+	if (this != &other)
+	{
+		this->rooms = other.rooms;
+		this->address = other.address;
+	}
+	return *this;
+}
+
 
 std::ostream& operator<<(std::ostream& os, const Data& data)
 {
