@@ -1,20 +1,11 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   A.hpp                                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: demetriorodrigues <demetriorodrigues@st    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/20 22:35:48 by demetriorod       #+#    #+#             */
-/*   Updated: 2025/04/20 22:36:01 by demetriorod      ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+/* demrodri@student.42wolfsburg.de
+   CPP06 - ex02 - realtype - A.hpp */
 
-#ifndef __A_H__
-#define __A_H__
+#ifndef A_HPP
+# define A_HPP
 
 #include "Base.hpp"
 
 class A : public Base {};
 
-#endif // __A_H__
+#endif

@@ -1,20 +1,11 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   C.hpp                                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: demetriorodrigues <demetriorodrigues@st    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/20 22:36:36 by demetriorod       #+#    #+#             */
-/*   Updated: 2025/04/20 22:36:38 by demetriorod      ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+/* demrodri@student.42wolfsburg.de
+   CPP06 - ex02 - realtype - C.hpp */
 
-#ifndef __C_H__
-#define __C_H__
+#ifndef C_HPP
+# define C_HPP
 
 #include "Base.hpp"
 
 class C : public Base {};
 
-#endif // __C_H__
+#endif

@@ -1,19 +1,11 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   B.hpp                                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: demetriorodrigues <demetriorodrigues@st    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/20 22:36:03 by demetriorod       #+#    #+#             */
-/*   Updated: 2025/04/20 22:36:13 by demetriorod      ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+/* demrodri@student.42wolfsburg.de
+   CPP06 - ex02 - realtype - B.hpp */
 
-#ifndef __B_H__
-#define __B_H__
+#ifndef B_HPP
+# define B_HPP
 
 #include "Base.hpp"
 
 class B : public Base {};
-#endif // __B_H__
+
+#endif

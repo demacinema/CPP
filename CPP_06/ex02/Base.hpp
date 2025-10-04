@@ -1,27 +1,18 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Base.hpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: demetriorodrigues <demetriorodrigues@st    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/20 22:36:22 by demetriorod       #+#    #+#             */
-/*   Updated: 2025/04/20 22:36:27 by demetriorod      ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+/* demrodri@student.42wolfsburg.de
+   CPP06 - ex02 - realtype - Base.hpp */
 
-
-#ifndef __BASE_H__
-#define __BASE_H__
+#ifndef BASE_HPP
+# define BASE_HPP
 
 #include <exception>
 #include <iostream>
 #include <string>
 #include <cstdlib>
 
-class Base {
+class Base
+{
 	public:
 		virtual ~Base() {};
 };
 
-#endif // __BASE_H__
+#endif

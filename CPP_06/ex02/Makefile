@@ -1,16 +1,7 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: demetriorodrigues <demetriorodrigues@st    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/04/20 22:35:30 by demetriorod       #+#    #+#              #
-#    Updated: 2025/04/20 22:35:36 by demetriorod      ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+# demrodri@student.42wolfsburg.de
+# CPP06 - ex02 - realtype - Makefile
 
-NAME	= identify
+NAME	= realtype
 
 SRC	=	$(wildcard *.cpp)
 OBJ	=	$(SRC:.cpp=.o)
