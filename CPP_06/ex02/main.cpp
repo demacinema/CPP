@@ -26,106 +26,89 @@ Base* generate(void)
 
 void identify(Base* p)
 {
-	if (dynamic_cast<A*>(p)) // if obj can be cast to A*, meaning it is of type A
-	{
-		std::cout << "A" << std::endl;
-	}
-	else if (dynamic_cast<B*>(p)) // if obj can be cast to B*, meaning it is of type B
-	{
-		std::cout << "B" << std::endl;
-	}
-	else if (dynamic_cast<C*>(p)) // if obj can be cast to C*, meaning it is of type C
-	{
-		std::cout << "C" << std::endl;
-	}
+	if (p == nullptr)
+		return;
+		
+	if (dynamic_cast<A*>(p))
+		std::cout << "----> A identified!" << std::endl;
+	else if (dynamic_cast<B*>(p))
+		std::cout << "----> B identified!" << std::endl;
+	else if (dynamic_cast<C*>(p))
+		std::cout << "----> C identified!" << std::endl;
 	else
-	{
-		std::cout << "Unknown" << std::endl; // in case obj is not of type A, B, or C
-	}
+		std::cout << "Unknown type" << std::endl;
 }
 
 void identify(Base& p)
 {
-	try // try to dynamic_cast obj to A&. Dynamic cast throws an exception if it fails. I used A&,
-	// because if I use A* it will always succeed, returning NULL if it fails.
-	// Using references instead of pointers to test the other way of dynamic casting.
-	// The (void) is used to avoid compiler warnings about unused variables.
-	// Explaining better: if the dynamic_cast succeeds, it returns a reference to the object,
-	// which is then cast to void to indicate that we don't care about the value itself,
-	// we just want to know if the cast was successful. If the cast fails, it throws an exception,
-	// which we catch and ignore, allowing the program to continue executing.
+	try
 	{
 		(void)dynamic_cast<A&>(p);
-		std::cout << "A" << std::endl;
-	}
-	catch (std::exception& e)
-	{
-		(void)e;
-	}
-
+		std::cout << "----> A identified!" << std::endl;
+		return;
+	} catch (std::exception&) {}
 	try
 	{
 		(void)dynamic_cast<B&>(p);
-		std::cout << "B" << std::endl;
-	}
-	catch (std::exception& e)
-	{
-		(void)e;
-	}
-
+		std::cout << "----> B identified!" << std::endl;
+		return;
+	} catch (std::exception&) {}
 	try
 	{
 		(void)dynamic_cast<C&>(p);
-		std::cout << "C" << std::endl;
-	} catch (std::exception& e)
+		std::cout << "----> C identified!" << std::endl;
+	}
+	catch (std::exception&)
 	{
-		(void)e;
+		std::cout << "Unknown type" << std::endl;
 	}
 }
 
 int main()
 {
-	srand((unsigned int)time(NULL));
+	srand((unsigned int)time(NULL)); // reset seed for rand()
 	Base* testptr;
 
-	std::cout << "=================pointer" << std::endl;
+	std::cout << "==== POINTER ==== " << std::endl;
+	std::cout << "1: " << std::endl;
+	testptr = generate();
+	identify(testptr);
+	delete testptr;	
+	std::cout << "2: " << std::endl;	
 	testptr = generate();
 	identify(testptr);
 	delete testptr;
-	
+	std::cout << "3: " << std::endl;
 	testptr = generate();
 	identify(testptr);
 	delete testptr;
-	
+	std::cout << "4: " << std::endl;
 	testptr = generate();
 	identify(testptr);
 	delete testptr;
-	
-	testptr = generate();
-	identify(testptr);
-	delete testptr;
-	
+	std::cout << "5: " << std::endl;
 	testptr = generate();
 	identify(testptr);
 	delete testptr;
 
-	std::cout << "=================reference" << std::endl;
+	std::cout << "\n==== REFERENCE ==== " << std::endl;
+	std::cout << "1: " << std::endl;
 	testptr = generate();
 	identify(*testptr);
 	delete testptr;
-	
+	std::cout << "2: " << std::endl;
 	testptr = generate();
 	identify(*testptr);
 	delete testptr;
-	
+	std::cout << "3: " << std::endl;
 	testptr = generate();
 	identify(*testptr);
 	delete testptr;
-	
+	std::cout << "4: " << std::endl;
 	testptr = generate();
 	identify(*testptr);
 	delete testptr;
-	
+	std::cout << "5: " << std::endl;
 	testptr = generate();
 	identify(*testptr);
 	delete testptr;
