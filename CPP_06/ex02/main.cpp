@@ -5,6 +5,7 @@
 #include "A.hpp"
 #include "B.hpp"
 #include "C.hpp"
+#include <ctime>
 
 Base* generate(void)
 {
@@ -26,16 +27,16 @@ Base* generate(void)
 
 void identify(Base* p)
 {
-	if (p == nullptr)
+	if (p == NULL)
 		return;
 		
-	if (dynamic_cast<A*>(p))
+	if (dynamic_cast<A*>(p)) // if p can be safely cast to A*
 		std::cout << "----> A identified!" << std::endl;
-	else if (dynamic_cast<B*>(p))
+	else if (dynamic_cast<B*>(p)) // if p can be safely cast to B*
 		std::cout << "----> B identified!" << std::endl;
-	else if (dynamic_cast<C*>(p))
+	else if (dynamic_cast<C*>(p)) // if p can be safely cast to C*
 		std::cout << "----> C identified!" << std::endl;
-	else
+	else 
 		std::cout << "Unknown type" << std::endl;
 }
 
@@ -43,19 +44,19 @@ void identify(Base& p)
 {
 	try
 	{
-		(void)dynamic_cast<A&>(p);
+		(void)dynamic_cast<A&>(p); // if p can be safely cast to A&, it continues, otherwise throws exception
 		std::cout << "----> A identified!" << std::endl;
 		return;
 	} catch (std::exception&) {}
 	try
 	{
-		(void)dynamic_cast<B&>(p);
+		(void)dynamic_cast<B&>(p); // if p can be safely cast to B&, it continues, otherwise throws exception
 		std::cout << "----> B identified!" << std::endl;
 		return;
 	} catch (std::exception&) {}
 	try
 	{
-		(void)dynamic_cast<C&>(p);
+		(void)dynamic_cast<C&>(p); // if p can be safely cast to C&, it continues, otherwise throws exception
 		std::cout << "----> C identified!" << std::endl;
 	}
 	catch (std::exception&)

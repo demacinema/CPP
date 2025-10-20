@@ -4,7 +4,7 @@
 #ifndef SCALARCONVERTER_HPP
 # define SCALARCONVERTER_HPP
 
-#include <cmath> // isnan, isinf
+#include <cmath> // for mathematical functions if needed
 #include <cstdlib> //strtod
 #include <cctype> // isdigit
 #include <climits> // INT_MAX, INT_MIN

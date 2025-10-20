@@ -65,7 +65,8 @@ void ScalarConverter::convert(const std::string& input)
 	if (ptr == input.c_str() || *ptr != '\0') // if no conversion or extra characters remain
 	{
 		// Handle case where input ends with 'f' (float notation)
-		if (input.back() == 'f')
+		// if (input.back() == 'f') // C++11 and later
+		if (input[input.length() - 1] == 'f') // to be compatible with C++98
 		{
 			std::string temp = input.substr(0, input.length() - 1); // remove the 'f'
 			value = std::strtod(temp.c_str(), &ptr); // try converting again

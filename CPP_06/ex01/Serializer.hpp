@@ -5,7 +5,8 @@
 # define SERIALIZER_HPP
 
 #include "Data.hpp"
-#include <cstdint> // for uintptr_t
+// #include <cstdint> // for uintptr_t
+#include <stdint.h> // for uintptr_t in C++98
 
 class Serializer
 {
