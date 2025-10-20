@@ -1,16 +1,7 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: demetriorodrigues <demetriorodrigues@st    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/04/20 22:38:40 by demetriorod       #+#    #+#              #
-#    Updated: 2025/04/20 22:38:46 by demetriorod      ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+# /* demrodri@student.42wolfsburg.de
+#    CPP07 - ex00 - whatever - Makefile */
 
-NAME	= template
+NAME	= whatever
 
 SRC	=	$(wildcard *.cpp)
 OBJ	=	$(SRC:.cpp=.o)

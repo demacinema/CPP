@@ -1,34 +1,27 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   whatever.hpp                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: demetriorodrigues <demetriorodrigues@st    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/20 22:38:07 by demetriorod       #+#    #+#             */
-/*   Updated: 2025/04/20 22:38:09 by demetriorod      ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+/* demrodri@student.42wolfsburg.de
+   CPP07 - ex00 - whatever - whatever.hpp */
 
-#ifndef __WHATEVER_H__
-#define __WHATEVER_H__
+#ifndef WHATEVER_HPP
+# define WHATEVER_HPP
 
-template <typename T>
-void swap(T& a, T& b) {
+template <typename T> // nomally the letter T is used for type, but any letter can be used
+void swap(T& a, T& b) // pass by reference to modify the original values
+{
 	T tmp = a;
 	a = b;
 	b = tmp;
 }
 
 template <typename T>
-T min(T a, T b) {
-	return (a < b) ? a : b;
+T min(T a, T b) // pass by value to avoid modifying the original values
+{
+	return (a < b) ? a : b; // if a is less than b, return a, else return b
 }
 
 template <typename T>
-T max(T a, T b) {
-	return (a > b) ? a : b;
+T max(T a, T b) // pass by value to avoid modifying the original values
+{
+	return (a > b) ? a : b; // if a is greater than b, return a, else return b
 }
 
-
-#endif // __WHATEVER_H__
+#endif

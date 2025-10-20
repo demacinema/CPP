@@ -1,23 +1,16 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   iter.hpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: demetriorodrigues <demetriorodrigues@st    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/20 22:40:00 by demetriorod       #+#    #+#             */
-/*   Updated: 2025/04/20 22:40:02 by demetriorod      ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+/* demrodri@student.42wolfsburg.de
+   CPP07 - ex01 - iter - iter.hpp */
 
-#ifndef __ITER_H__
-#define __ITER_H__
+#ifndef ITER_HPP
+# define ITER_HPP
 
-template<typename T>
-void iter(T *arr, int lenght, void (*f)(T const &)) {
-	for (int i = 0; i < lenght; i++) {
-		f(arr[i]);
+// Template function that works with any array type and any function type
+template<typename T, typename F>
+void iter(T* array, const size_t length, F function)
+{
+	for (size_t i = 0; i < length; i++) {
+		function(array[i]);
 	}
 }
 
-#endif // __ITER_H__
+#endif
