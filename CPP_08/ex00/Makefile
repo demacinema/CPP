@@ -1,14 +1,5 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: demetriorodrigues <demetriorodrigues@st    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/04/20 22:42:00 by demetriorod       #+#    #+#              #
-#    Updated: 2025/04/20 22:46:34 by demetriorod      ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+# /* demrodri@student.42wolfsburg.de
+#    CPP08 - ex00 - easyfind - Makefile */
 
 NAME	= easyfind
 
@@ -17,7 +8,6 @@ OBJ	=	$(SRC:.cpp=.o)
 
 CC	=	c++
 CFLAGS	=	-Wall -Wextra -Werror -std=c++98
-
 
 all: $(NAME)
 

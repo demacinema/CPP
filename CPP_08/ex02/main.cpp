@@ -1,19 +1,11 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: demetriorodrigues <demetriorodrigues@st    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/20 22:45:09 by demetriorod       #+#    #+#             */
-/*   Updated: 2025/04/20 22:45:24 by demetriorod      ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+/* demrodri@student.42wolfsburg.de
+   CPP08 - ex02 - mutantStack - main.cpp */
 
 #include "MutantStack.hpp"
-#include <list>
+#include <list> // for std::list
 
-void testOnSubject() {
+void testOnSubject()
+{
 	MutantStack<int> mstack;
 	mstack.push(5);
 	mstack.push(17);
@@ -26,14 +18,16 @@ void testOnSubject() {
 	MutantStack<int>::iterator ite = mstack.end();
 	++it;
 	--it;
-	while (it != ite) {
+	while (it != ite)
+	{
 		std::cout << *it << std::endl;
 		++it; 
 	}
 	std::stack<int> s(mstack); 
 }
 
-void testOnSubjectWithList() {
+void testOnSubjectWithList()
+{
 	std::list<int> list;
 	list.push_back(5);
 	list.push_back(17);
@@ -47,69 +41,82 @@ void testOnSubjectWithList() {
 	std::list<int>::iterator ite = list.end();
 	++it;
 	--it;
-	while (it != ite) {
+	while (it != ite)
+	{
 		std::cout << *it << std::endl;
 		++it; 
 	} 
 }
 
-void test() {
+void test()
+{
 	MutantStack<int> mstack;
 
-	for (int i = 0; i < 10; i++) {
+	for (int i = 0; i < 10; i++)
 		mstack.push(i);
-	}
 
-	for (MutantStack<int>::iterator it = mstack.begin(); it != mstack.end(); it++) {
+	for (MutantStack<int>::iterator it = mstack.begin(); it != mstack.end(); it++)
+	{
 		std::cout << *it << std::endl;
 		*it = *it + 100;
 	}
 
-	for (MutantStack<int>::const_iterator it = mstack.cbegin(); it != mstack.cend(); it++) {
+	for (MutantStack<int>::const_iterator it = mstack.cbegin(); it != mstack.cend(); it++)
+	{
 		std::cout << *it << std::endl;
 		//*it = *it + 100;
 	}
-	std::cout << "copied one" << std::endl;
+
+	std::cout << "\nCOPIED STACK" << std::endl;
 	MutantStack<int> mstack2(mstack);
-	for (MutantStack<int>::iterator it = mstack2.begin(); it != mstack2.end(); it++) {
+	for (MutantStack<int>::iterator it = mstack2.begin(); it != mstack2.end(); it++)
+	{
 		std::cout << *it << std::endl;
 		*it = *it + 100;
 	}
-	std::cout << "copied one after adding" << std::endl;
-	for (MutantStack<int>::iterator it = mstack2.begin(); it != mstack2.end(); it++) {
+
+	std::cout << "\nCOPIED STACK AFTER ADDING" << std::endl;
+	for (MutantStack<int>::iterator it = mstack2.begin(); it != mstack2.end(); it++)
+	{
 		std::cout << *it << std::endl;
 	}
-	std::cout << "original" << std::endl;
-	for (MutantStack<int>::iterator it = mstack.begin(); it != mstack.end(); it++) {
+
+	std::cout << "\nORIGINAL STACK" << std::endl;
+	for (MutantStack<int>::iterator it = mstack.begin(); it != mstack.end(); it++)
+	{
 		std::cout << *it << std::endl;
 	}
 }
 
-void reverseTest() {
+void reverseTest()
+{
 	MutantStack<double> mstack;
 
-	std::cout << "reverse iterator test" << std::endl;
-	for (int i = 0; i < 10; i++) {
+	std::cout << "\nREVERSE ITERATOR TEST" << std::endl;
+	for (int i = 0; i < 10; i++)
+	{
 		mstack.push(i);
 	}
 
-	for (MutantStack<double>::reverse_iterator it = mstack.rbegin(); it != mstack.rend(); it++) {
+	for (MutantStack<double>::reverse_iterator it = mstack.rbegin(); it != mstack.rend(); it++)
+	{
 		std::cout << *it << std::endl;
 		*it = *it + 100;
 	}
 
-	for (MutantStack<double>::const_reverse_iterator it = mstack.crbegin(); it != mstack.crend(); it++) {
+	for (MutantStack<double>::const_reverse_iterator it = mstack.crbegin(); it != mstack.crend(); it++)
+	{
 		std::cout << *it << std::endl;
 		//*it = *it + 100;
 	}
 }
 
-int main() {
+int main()
+{
 	testOnSubject();
 	std::cout << std::endl;
 	testOnSubjectWithList();
 	std::cout << std::endl;
 	test();
 	reverseTest();
-	std::system("leaks mutantStack");
 }

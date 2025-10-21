@@ -1,14 +1,5 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: demetriorodrigues <demetriorodrigues@st    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/04/20 22:42:16 by demetriorod       #+#    #+#              #
-#    Updated: 2025/04/20 22:45:57 by demetriorod      ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+# /* demrodri@student.42wolfsburg.de
+#    CPP08 - ex02 - mutantStack - Makefile */
 
 NAME	= mutantStack
 
@@ -26,6 +17,9 @@ $(NAME): $(OBJ)
 
 %.o: %.cpp
 	$(CC) $(CFLAGS) -c $< -o $@
+
+leak:
+	valgrind --leak-check=full ./$(NAME)
 
 clean:
 	rm -rf $(OBJ)
