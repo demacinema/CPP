@@ -2,6 +2,27 @@
    CPP07 - ex02 - array - main.cpp */
 
 #include "Array.hpp"
+#include <sstream>
+
+class ComplexType
+{
+	public:
+		ComplexType() : value(42), name("default") {}
+		ComplexType(int v, std::string n) : value(v), name(n) {}
+
+		// Getters to access private members
+		int getValue() const { return value; }
+		std::string getName() const { return name; }
+
+	private:
+		int value;
+		std::string name;
+};
+
+std::ostream& operator<<(std::ostream& os, const ComplexType& obj)
+{
+	return os << "{" << obj.getValue() << ", " << obj.getName() << "}";
+}
 
 void test()
 {
@@ -113,15 +134,34 @@ void test()
 	Array<std::string> stra(10);
 	for (unsigned int i = 0; i < stra.size(); i++)
 	{
-		stra[i] = "Hello " + std::to_string(i); // Using std::to_string to convert int to string
+		// C++98 compatible int to string conversion
+		std::ostringstream oss;
+		oss << i;
+		stra[i] = "Hello " + oss.str();
+		
+		// C++11 version (doesn't work with -std=c++98):
+		// stra[i] = "Hello " + std::to_string(i);
 	}
 	std::cout << stra << std::endl;
+
+	// Test complex type
+	std::cout << "\n== COMPLEX TYPE TEST ==" << std::endl;
+	Array<ComplexType> complexArray(3);
+	complexArray[0] = ComplexType(1, "first");
+	complexArray[1] = ComplexType(2, "second");
+	complexArray[2] = ComplexType(3, "third");
+	std::cout << "Complex array:" << std::endl;
+	std::cout << complexArray << std::endl;
+
+	// Test copy constructor with complex types
+	Array<ComplexType> copiedComplex(complexArray);
+	std::cout << "Copied complex array:" << std::endl;
+	std::cout << copiedComplex << std::endl;
 }
 
 int main()
 {
 	test();
-	// //This is a check for memory leaks, only works on MacOS with the leaks tool
-	// system("leaks array || grep leaked");
+
 	return 0;
 }
