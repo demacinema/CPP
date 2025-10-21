@@ -33,7 +33,7 @@ class Span
 				const char* what() const throw();
 		};
 
-	const std::multiset<int>& getData() const; // for assignment operator, it returns the data of another Span
+	const std::multiset<int>& getData() const; // for assignment operator, it returns the data of another Span. Using multiset to keep numbers sorted.
 
 	void addNumber(int num); // adds a number to the span
 	int shortestSpan() const; // finds the shortest span between any two numbers
@@ -44,13 +44,7 @@ class Span
 	{
 		if (static_cast<unsigned int>(std::distance(begin, end)) > (_capacity - _data.size())) // check if range fits
 			throw OutOfRangeException();
-
-		// using for loop to add each number in the range, (; because begin is an iterator, not an index)
-		// the syntax for (; begin != end; ++begin) can be translated as:
-		// for (initialization; condition; increment)
-		// initialization: (nothing to initialize here, we need to use the value of begin as it is)
-		// condition: continue the loop as long as begin is not equal to end
-		// increment: move the iterator to the next element in the range
+//---->>>
 		for (; begin != end; ++begin)
 			addNumber(*begin);
 	}
@@ -62,3 +56,15 @@ class Span
 };
 
 #endif
+
+
+
+
+
+//----->>>
+// Using for loop to add each number in the range, (; because begin is an iterator, not an index)
+// the syntax for (; begin != end; ++begin) can be translated as:
+// for (initialization; condition; increment)
+// initialization: (nothing to initialize here, we need to use the value of begin as it is)
+// condition: continue the loop as long as begin is not equal to end
+// increment: move the iterator to the next element in the range

@@ -96,7 +96,7 @@ void rangeTest()
 	Span sp = Span(5);
 
 	int a[3] = {0, 10, 200};
-	sp.addRange(std::begin(a), std::end(a)); // adding range of 3 elements: 0, 10, 200
+	sp.addRange(a, a + 3); // adding range of 3 elements: 0, 10, 200
 	std::cout << "--------------------------------" << std::endl;
 	displaySpan("[ADDING RANGE 3]", sp);
 
@@ -114,7 +114,7 @@ void rangeTest()
 	
 	try
 	{
-		sp.addRange(std::begin(a), std::end(a)); // should throw error, as adding 3 more numbers exceeds capacity
+		sp.addRange(a, a + 3); // should throw error, as adding 3 more numbers exceeds capacity
 	}
 	catch (std::exception& e)
 	{
@@ -124,7 +124,7 @@ void rangeTest()
 	int b[1] = {10000};
 	try
 	{
-		sp.addRange(std::begin(b), std::end(b)); // should work, as adding 1 more number fits capacity
+		sp.addRange(b, b + 1); // should work, as adding 1 more number fits capacity
 	}
 	catch (std::exception& e)
 	{

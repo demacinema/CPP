@@ -11,11 +11,17 @@ template <typename T>
 typename T::iterator easyfind(T& container, int n) // function template that searches for an integer 'n' in a container 'T'
 {
 	typename T::iterator it = std::find(container.begin(), container.end(), n);
-	// std::find is a standard algorithm that searches for a value in a range
-	// it takes three arguments: the beginning iterator, the ending iterator, and the value to search for.
+
 	if (it == container.end()) // if the element is not found, throw an exception
 		throw std::runtime_error("not found");
 	return it;
 }
 
 #endif
+
+
+
+
+
+// std::find is a STL (Standard Template Library) algorithm that searches for a value in a range
+// it takes three arguments: the beginning iterator, the ending iterator, and the value to search for.
