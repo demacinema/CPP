@@ -18,6 +18,9 @@ $(NAME): $(OBJ)
 %.o: %.cpp
 	$(CC) $(CFLAGS) -c $< -o $@
 
+leak: all
+	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME)
+
 clean:
 	rm -rf $(OBJ)
 
