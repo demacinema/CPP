@@ -1,18 +1,10 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: demetriorodrigues <demetriorodrigues@st    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/20 22:50:37 by demetriorod       #+#    #+#             */
-/*   Updated: 2025/04/20 22:51:54 by demetriorod      ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+/* demrodri@student.42wolfsburg.de
+   CPP09 - ex00 - btc - main.cpp */
 
 #include "BitcoinExchange.hpp"
 
-bool	correct_date(std::string date){
+bool	correct_date(std::string date)
+{
 	std::istringstream iss(date);
 	int year, month, day;
 	char dash;
@@ -61,7 +53,8 @@ int	ft_error(int i)
 	return (1);
 }
 
-int main(int argc, char **argv){
+int main(int argc, char **argv)
+{
 	if (argc != 2)
 		return (ft_error(0));
 	BitcoinExchange data;

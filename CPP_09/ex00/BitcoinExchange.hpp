@@ -1,14 +1,5 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: demetriorodrigues <demetriorodrigues@st    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/20 22:50:31 by demetriorod       #+#    #+#             */
-/*   Updated: 2025/04/20 22:51:40 by demetriorod      ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+/* demrodri@student.42wolfsburg.de
+   CPP09 - ex00 - btc - BitcoinExchange.hpp */
 
 #ifndef BITCOINEXCHANGE_HPP
 # define BITCOINEXCHANGE_HPP
@@ -23,35 +14,38 @@
 #include <climits>
 
 
-class BitcoinExchange{
-    private:
-        std::map<std::string, double> _data;
-    public:
-        BitcoinExchange();
-        ~BitcoinExchange();
-        BitcoinExchange(const BitcoinExchange& other);
-        BitcoinExchange&operator=(const BitcoinExchange& other);
+class BitcoinExchange
+{
+	private:
+		std::map<std::string, double> _data;
 
-        void    InitData();
-        std::map<std::string, double>::iterator   FindData(std::string date);
+	public:
+		BitcoinExchange();
+		~BitcoinExchange();
+		BitcoinExchange(const BitcoinExchange& other);
+		BitcoinExchange&operator=(const BitcoinExchange& other);
 
-    class IntException : public std::exception{
-    public:
-        virtual const char* what() const throw();
+		void    InitData();
+		std::map<std::string, double>::iterator   FindData(std::string date);
+
+		class IntException : public std::exception
+		{
+		public:
+			virtual const char* what() const throw();
+		};
+
+		class NegException : public std::exception
+		{
+			public:
+				virtual const char* what() const throw();
+		};
+
+		class ConException : public std::exception
+		{
+			public:
+				virtual const char* what() const throw();
+		};
+
 };
-
-class NegException : public std::exception{
-    public:
-        virtual const char* what() const throw();
-};
-
-class ConException : public std::exception{
-    public:
-        virtual const char* what() const throw();
-};
-
-};
-
-
 
 #endif
