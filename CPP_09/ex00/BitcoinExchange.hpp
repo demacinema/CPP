@@ -4,15 +4,11 @@
 #ifndef BITCOINEXCHANGE_HPP
 # define BITCOINEXCHANGE_HPP
 
-#include <iostream>
-#include <map>
-#include <fstream> // for file handling - used in InitData() in BitcoinExchange.cpp
-#include <sstream> 
-#include <string>
-#include <iomanip> // for std::setprecision - used in main.cpp
-#include <cmath> // for std::floor - used in rounding (in main.cpp)
-#include <climits> // for INT_MAX
-
+#include <iostream> // for std::exception
+#include <map> // for std::map
+#include <string> // for std::string
+#include <fstream> // (file stream) - for file handling - used in InitData() in BitcoinExchange.cpp
+#include <sstream> // (string stream) - for string stream parsing - used in InitData() and FindData()
 
 class BitcoinExchange
 // Class to handle Bitcoin exchange data:
@@ -29,9 +25,15 @@ class BitcoinExchange
 		BitcoinExchange(const BitcoinExchange& other);
 		BitcoinExchange&operator=(const BitcoinExchange& other);
 
-		void    InitData(); // Initialize data from a file named "data.csv"
-		std::map<std::string, double>::iterator   FindData(std::string date); // Find data for a specific date in the map
 
+		// Functions
+		void    InitData(); // Initialize data from a file named "data.csv"
+
+		std::map<std::string, double>::iterator 	FindData(std::string date); // Find data for a specific date in the map
+												  //FindData returns a pointer-like object that points to the found element in the map.
+
+
+		// Exceptions
 		class IntException : public std::exception // Exception for invalid integer input
 		{
 		public:
@@ -51,5 +53,37 @@ class BitcoinExchange
 		};
 
 };
-
 #endif
+
+/*
+Analogy:
+Action	Real life								Code
+throw	Throwing a ball							throw ConException();
+catch	Catching a ball							catch (std::exception &e)
+what()	Reading the message on the ball			e.what()
+
+main.cpp                          BitcoinExchange.cpp
+────────                          ────────────────────
+try {                             
+    data.InitData(); ──────────►  InitData() {
+                                      if (!file.is_open())
+                     ◄──────────          throw ConException();
+}                                 }
+catch (std::exception &e) {       
+    // Error handled here         
+    e.what() → "Error: could not open file."
+}
+
+Summary:
+BitcoinExchange.cpp	throw	"There's a problem, I can't handle it"
+main.cpp	try/catch	"I'll watch for problems and handle them"
+
+It's about separation of responsibilities:
+BitcoinExchange.cpp	Detect problems (low-level logic)
+main.cpp	Decide what to do about problems (high-level control)
+
+The employee detects the problem but lets the boss decide what to do:
+
+BitcoinExchange.cpp	Employee: "Boss, there's a fire!" (reports problem)
+main.cpp	Boss: "Call firefighters" or "Evacuate" (decides action)
+*/

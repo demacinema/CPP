@@ -3,10 +3,30 @@
 
 #include "BitcoinExchange.hpp"
 #include <ctime> // for time functions to get current date
+#include <iomanip> // for std::setprecision
+// #include <cmath> // for std::floor - used in rounding
+#include <climits> // for INT_MAX
 
 // Checks its format and ensures that falls within acceptable ranges
 bool	correct_date(std::string date)
 {
+    // Check exact format: YYYY-MM-DD (10 characters)
+    if (date.length() != 10)
+        return (false);
+    
+    // Check dashes are in correct positions
+    if (date[4] != '-' || date[7] != '-')
+        return (false);
+    
+    // Check all other characters are digits
+    for (int i = 0; i < 10; i++)
+    {
+        if (i == 4 || i == 7)
+            continue;  // Skip dash positions
+        if (!std::isdigit(date[i]))
+            return (false);
+    }
+
 	// Check if the date format is correct:
 	// year: reads an integer, and stores it in year
 	// dash: reads the '-' character, and stores it in dash (we don't use it)
@@ -75,13 +95,13 @@ int	ft_error(int i)
 {
 	if (i == 0)
 	{
-		std::cerr << "Wrong amount of arguments" << std::endl;
-		// std::cerr << "Error: could not open file." << std::endl;
+		// std::cerr << "Wrong amount of arguments" << std::endl;
+		std::cerr << "Error: could not open file." << std::endl;
 	}
 	if (i == 1)
 	{
-		std::cerr << "Wrong file path" << std::endl;
-		// std::cerr << "Error: could not open file." << std::endl;
+		// std::cerr << "Wrong file path" << std::endl;
+		std::cerr << "Error: could not open file." << std::endl;
 	}
 	return (1);
 }
@@ -100,13 +120,13 @@ int main(int argc, char **argv)
 		return (ft_error(0));
 
 	BitcoinExchange data;
-	try
+	try // "Watch this code for errors"
 	{
-		data.InitData(); //Load data from "data.csv"
+		data.InitData(); //Load data from "data.csv" // This might throw an error/exception...
 	}
-	catch(std::exception &e)
+	catch(std::exception &e) // catch the error thrown by InitData // "If an error is thrown, I'll handle it here"
 	{
-		std::cerr << e.what() << std::endl;
+		std::cerr << e.what() << std::endl; // Print the error message from the exception
 		return (0);
 	}
 
@@ -120,6 +140,9 @@ int main(int argc, char **argv)
 	double value;
 
 	std::map<std::string, double>::iterator it; // Iterator (pointer) to hold the result of FindData
+
+	// std::cout << std::fixed << std::setprecision(2); // Set output format to fixed decimal notation and with 2 decimal places
+	// std::cout << std::defaultfloat;  // Reset to default format
 
 	while (std::getline(inputFile, line)) // Read each line until EOF - getline (origin stream, result string)
 	{									  // Every iteration stops at a new line character (getline(inputFile, line, '\n')) by default
@@ -135,13 +158,14 @@ int main(int argc, char **argv)
 			else if (!(iss >> value)) // Try to read the value (after '|') as double
 				std::cerr << "Error: bad value" << std::endl;
 			else if (value < 0) // Check for negative value
-				std::cerr << "Error: not a positive number" << std::endl;
-			else if (value > INT_MAX) // Check for excessively large value
-				std::cerr << "Error: too large number" << std::endl;
+				std::cerr << "Error: not a positive number." << std::endl;
+			else if (value > 1000) // Check for value greater than 1000
+				std::cerr << "Error: too large a number." << std::endl;
 			else // If all checks pass, find the data and print the result
 			{
 				date = trim(date); // Trim whitespace from date
 				it = data.FindData(date); // Find the corresponding data for the date
+										
 				std::cout << date << " => " << value << " = " << value * it->second << std::endl; // Print date, value, and calculated exchange rate
 			}
 		}
@@ -149,7 +173,33 @@ int main(int argc, char **argv)
 			std::cerr << "Error: bad input => " << date << std::endl;
 	}
 	inputFile.close(); // Close the input file
-	
+
 	return (0);
 }
 
+
+
+
+
+
+/*
+How it's used:
+std::map<std::string, double>::iterator it;  // Declare iterator
+it = data.FindData("2023-03-15");            // Call function, get iterator back
+
+// Access the found element:
+it->first;   // The key: "2023-03-15"
+it->second;  // The value: 25000.50
+
+FindData("2023-03-15") searches the map:
+_data = {
+    "2023-03-14" → 24000.00
+    "2023-03-15" → 25000.50   ← Returns iterator pointing HERE
+    "2023-03-16" → 26000.00
+}
+
+With an iterator, you can check if the search failed:
+it = data.FindData(date);
+if (it == _data.end())  // Not found!
+    // Handle error
+*/
