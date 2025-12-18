@@ -48,50 +48,30 @@ bool	correct_date(std::string date)
 // that the year, month, and day components fall within acceptable ranges, including handling
 // special cases for months with fewer days and leap years.
 
-
-std::string trim(std::string str)
-// Function to trim leading and trailing whitespace from a string
-// 1. Use find_first_not_of to find the first non-whitespace character.
-// 2. Use find_last_not_of to find the last non-whitespace character.	
-
+std::string trim(std::string str)// trim leading and trailing whitespace
 {
-	size_t first = str.find_first_not_of(" \t");
-	if (first == std::string::npos)
+	size_t first = str.find_first_not_of(" \t"); //first character that is not a space or tab
+	if (first == std::string::npos) //if first contains only spaces and tabs (npos)
 		return ("");
-	size_t last = str.find_last_not_of(" \t");
+	size_t last = str.find_last_not_of(" \t"); //last character that is not a space or tab
 	return str.substr(first, last - first + 1);
-	
+	// substr(pos, len): returns a substring starting at position pos with length len (+1 to include the last character)
 }
 
-// In summary, the trim function removes leading and trailing whitespace from a given string
-// by identifying the positions of the first and last non-whitespace characters and returning
-// the substring between them.
-// As an example, is the string is 
-
-
 int	ft_error(int i)
-// Function to handle errors and print appropriate messages
-// 1. If no arguments are provided, print "Wrong amount of arguments".
-// 2. If the file path is incorrect, print "Wrong file path".
-// 3. Return 1 to indicate an error.
-// 4. Return 0 if no error occurs.
 {
 	if (i == 0)
 	{
-		// std::cerr << "Wrong amount of arguments" << std::endl;
-		std::cerr << "Error: could not open file." << std::endl;
+		std::cerr << "Wrong amount of arguments" << std::endl;
+		// std::cerr << "Error: could not open file." << std::endl;
 	}
 	if (i == 1)
 	{
-		// std::cerr << "Wrong file path" << std::endl;
-		std::cerr << "Error: could not open file." << std::endl;
+		std::cerr << "Wrong file path" << std::endl;
+		// std::cerr << "Error: could not open file." << std::endl;
 	}
 	return (1);
 }
-
-// In summary, the ft_error function handles error reporting by printing specific messages
-// based on the error code provided and returns an integer to indicate the presence of an error.
-
 
 int main(int argc, char **argv)
 // Main function to read Bitcoin exchange data from a file
@@ -107,20 +87,23 @@ int main(int argc, char **argv)
 {
 	if (argc != 2)
 		return (ft_error(0));
+
 	BitcoinExchange data;
 	try
 	{
-		data.InitData();
+		data.InitData(); //Load data from "data.csv"
 	}
 	catch(std::exception &e)
 	{
 		std::cerr << e.what() << std::endl;
 		return (0);
 	}
+
 // Open the input file specified in the command line argument
 	std::ifstream inputFile(argv[1]);
 	if (!inputFile.is_open())
-		return (ft_error(1));
+		return (ft_error(1)); // If the file cannot be opened, return an error
+
 // Read each line, split by '|' to get date and value
 	std::map<std::string, double> map;
 	std::string line;
