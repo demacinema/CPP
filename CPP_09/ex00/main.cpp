@@ -4,12 +4,21 @@
 #include "BitcoinExchange.hpp"
 
 bool	correct_date(std::string date)
+// Function to check if the date is valid
+// 1. Split the date string into year, month, and day.
+// 2. Check if the year is between 2009 and 2024, month is between 1 and 12, and day is between 1 and 31.
+// 3. Handle special cases for months with fewer than 31 days and February.
+// 4. Return true if the date is valid, false otherwise.	
 {
 	std::istringstream iss(date);
 	int year, month, day;
 	char dash;
 
-	if (!(iss >> year >> dash >> month >> dash >> day))
+	if (!(iss >> year >> dash >> month >> dash >> day)) // Check if the date format is correct:
+	// 1. Use istringstream to parse the date string.
+	// 2. Expect the format to be "YYYY-MM-DD" with dashes as separators.
+	// 3. If parsing fails, return false.
+	// 4. If the format is correct, proceed to validate the date components.
 		return (false);
 	if ((year == 2009 && (month == 1 && day < 2)))
 		return (false);
@@ -33,9 +42,19 @@ bool	correct_date(std::string date)
 		}
 	}
 	return (true);
-	}
+}
 
-std::string trim(std::string str){
+// In summary, the correct_date function validates a date string by checking its format and ensuring
+// that the year, month, and day components fall within acceptable ranges, including handling
+// special cases for months with fewer days and leap years.
+
+
+std::string trim(std::string str)
+// Function to trim leading and trailing whitespace from a string
+// 1. Use find_first_not_of to find the first non-whitespace character.
+// 2. Use find_last_not_of to find the last non-whitespace character.	
+
+{
 	size_t first = str.find_first_not_of(" \t");
 	if (first == std::string::npos)
 		return ("");
@@ -44,35 +63,75 @@ std::string trim(std::string str){
 	
 }
 
+// In summary, the trim function removes leading and trailing whitespace from a given string
+// by identifying the positions of the first and last non-whitespace characters and returning
+// the substring between them.
+// As an example, is the string is 
+
+
 int	ft_error(int i)
+// Function to handle errors and print appropriate messages
+// 1. If no arguments are provided, print "Wrong amount of arguments".
+// 2. If the file path is incorrect, print "Wrong file path".
+// 3. Return 1 to indicate an error.
+// 4. Return 0 if no error occurs.
 {
 	if (i == 0)
-		std::cerr << "Wrong amount of arguments" << std::endl;
+	{
+		// std::cerr << "Wrong amount of arguments" << std::endl;
+		std::cerr << "Error: could not open file." << std::endl;
+	}
 	if (i == 1)
-		std::cerr << "Wrong file path" << std::endl;
+	{
+		// std::cerr << "Wrong file path" << std::endl;
+		std::cerr << "Error: could not open file." << std::endl;
+	}
 	return (1);
 }
 
+// In summary, the ft_error function handles error reporting by printing specific messages
+// based on the error code provided and returns an integer to indicate the presence of an error.
+
+
 int main(int argc, char **argv)
+// Main function to read Bitcoin exchange data from a file
+// 1. Check if the correct number of arguments is provided.
+// 2. Initialize a BitcoinExchange object and call InitData to load data from "data.csv".
+// 3. Open the input file specified in the command line argument.
+// 4. Read each line, split by '|' to get date and value.
+// 5. Validate the date and value, handle errors for invalid input.
+// 6. If valid, find the corresponding data in the BitcoinExchange object and print the
+//    date, value, and the calculated exchange rate.
+// 7. Handle exceptions for file not found or other issues.	
+
 {
 	if (argc != 2)
 		return (ft_error(0));
 	BitcoinExchange data;
-	try{data.InitData();}
-	catch(std::exception &e){
+	try
+	{
+		data.InitData();
+	}
+	catch(std::exception &e)
+	{
 		std::cerr << e.what() << std::endl;
-		return (0);}
+		return (0);
+	}
+// Open the input file specified in the command line argument
 	std::ifstream inputFile(argv[1]);
 	if (!inputFile.is_open())
 		return (ft_error(1));
+// Read each line, split by '|' to get date and value
 	std::map<std::string, double> map;
 	std::string line;
 	double value;
-	std::map<std::string, double>::iterator it;
-	while (std::getline(inputFile, line)){
+	std::map<std::string, double>::iterator it; // Iterator to hold the result of FindData
+	while (std::getline(inputFile, line)) // Read each line from the input file, while there are lines to read
+	{
 		std::istringstream iss(line);
 		std::string date;
-		if (std::getline(iss, date, '|')){
+		if (std::getline(iss, date, '|')) // Split the line by '|' to get the date. ex: "2023-03-15 | 1500" becomes "2023-03-15 "
+		{
 			if (trim(date) == "date")
 				continue ;
 			else if (!correct_date(trim(date)))
@@ -83,7 +142,8 @@ int main(int argc, char **argv)
 				std::cerr << "Error: not a positive number" << std::endl;
 			else if (value > INT_MAX)
 				std::cerr << "Error: too large number" << std::endl;
-			else{
+			else
+			{
 				date = trim(date);
 				it = data.FindData(date);
 				std::cout << date << " => " << value << " = " << value * it->second << std::endl;
@@ -94,3 +154,9 @@ int main(int argc, char **argv)
 	}
 	inputFile.close();
 }
+
+// In summary, the main function orchestrates the reading and processing of Bitcoin exchange data
+// from a specified input file, utilizing the BitcoinExchange class to load historical data,
+// validate input dates and values, and compute exchange rates while handling potential errors
+// and exceptions.
+
