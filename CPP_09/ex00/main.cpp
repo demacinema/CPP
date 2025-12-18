@@ -2,51 +2,64 @@
    CPP09 - ex00 - btc - main.cpp */
 
 #include "BitcoinExchange.hpp"
+#include <ctime> // for time functions to get current date
 
+// Checks its format and ensures that falls within acceptable ranges
 bool	correct_date(std::string date)
-// Function to check if the date is valid
-// 1. Split the date string into year, month, and day.
-// 2. Check if the year is between 2009 and 2024, month is between 1 and 12, and day is between 1 and 31.
-// 3. Handle special cases for months with fewer than 31 days and February.
-// 4. Return true if the date is valid, false otherwise.	
 {
-	std::istringstream iss(date);
+	// Check if the date format is correct:
+	// year: reads an integer, and stores it in year
+	// dash: reads the '-' character, and stores it in dash (we don't use it)
+	// month: reads an integer, and stores it in month
+	// dash: reads the '-' character, and stores it in dash (we don't use it)
+	// day: reads an integer, and stores it in day
+	std::istringstream iss(date); //input string stream ("similar to cin") to parse the date
 	int year, month, day;
-	char dash;
+	char dash; //"trash" var, to ignore the '-' characters in the date string
 
-	if (!(iss >> year >> dash >> month >> dash >> day)) // Check if the date format is correct:
-	// 1. Use istringstream to parse the date string.
-	// 2. Expect the format to be "YYYY-MM-DD" with dashes as separators.
-	// 3. If parsing fails, return false.
-	// 4. If the format is correct, proceed to validate the date components.
+	if (!(iss >> year >> dash >> month >> dash >> day))
 		return (false);
+
+	// Check if the date is before Bitcoin existed (before 2009-01-02)
 	if ((year == 2009 && (month == 1 && day < 2)))
 		return (false);
-	if (year == 2024 && month >= 2 && day > 15)
-		return (false);
-	if (((year < 2009 || year > 2024) || (month < 1 || month > 12) || (day < 1 || day > 31)))
+
+	// Check if the year, month, and day are within valid ranges
+	if (((year < 2009) || (month < 1 || month > 12) || (day < 1 || day > 31)))
 		return (false);
 	else if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30)
 		return (false);
+
+    // Check if date is in the future
+    time_t now = time(0); // time (0) returns the current time in seconds since epoch (Jan 1, 1970)
+    tm *ltm = localtime(&now); // localtime converts the time in seconds to a struct tm (local time representation)
+    int currentYear = 1900 + ltm->tm_year; // tm_year is the number of years since 1900
+    int currentMonth = 1 + ltm->tm_mon; // tm_mon is the number of months since January (0-11)
+    int currentDay = ltm->tm_mday; // tm_mday is the day of the month (1-31)
+    if (year > currentYear)
+        return (false);
+    if (year == currentYear && month > currentMonth)
+        return (false);
+    if (year == currentYear && month == currentMonth && day > currentDay)
+        return (false);
+
+	// Leap year check: if year is divisible by 4 and (not divisible by 100 or divisible by 400)
 	if (month == 2)
-		{
+	{
 		if ((year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)))
 		{
-			if (day > 29)
+			if (day > 29) // If it's a leap year, February can have up to 29 days
 				return (false);
 		}
 		else
 		{
-		if (day > 28)
+		if (day > 28) // If it's not a leap year, February can have up to 28 days
 			return (false);
 		}
 	}
+
 	return (true);
 }
-
-// In summary, the correct_date function validates a date string by checking its format and ensuring
-// that the year, month, and day components fall within acceptable ranges, including handling
-// special cases for months with fewer days and leap years.
 
 std::string trim(std::string str)// trim leading and trailing whitespace
 {
@@ -73,17 +86,15 @@ int	ft_error(int i)
 	return (1);
 }
 
-int main(int argc, char **argv)
 // Main function to read Bitcoin exchange data from a file
 // 1. Check if the correct number of arguments is provided.
 // 2. Initialize a BitcoinExchange object and call InitData to load data from "data.csv".
 // 3. Open the input file specified in the command line argument.
 // 4. Read each line, split by '|' to get date and value.
 // 5. Validate the date and value, handle errors for invalid input.
-// 6. If valid, find the corresponding data in the BitcoinExchange object and print the
-//    date, value, and the calculated exchange rate.
+// 6. If valid, find the corresponding data in the BitcoinExchange object and print.
 // 7. Handle exceptions for file not found or other issues.	
-
+int main(int argc, char **argv)
 {
 	if (argc != 2)
 		return (ft_error(0));
@@ -99,47 +110,46 @@ int main(int argc, char **argv)
 		return (0);
 	}
 
-// Open the input file specified in the command line argument
-	std::ifstream inputFile(argv[1]);
-	if (!inputFile.is_open())
-		return (ft_error(1)); // If the file cannot be opened, return an error
+	std::ifstream inputFile(argv[1]); // Create file stream and open file specified in the command line argument
+	if (!inputFile.is_open()) // If not opened,
+		return (ft_error(1));
 
 // Read each line, split by '|' to get date and value
-	std::map<std::string, double> map;
+	// std::map<std::string, double> map; // Not needed, as the map in BitcoinExchange class is used
 	std::string line;
 	double value;
-	std::map<std::string, double>::iterator it; // Iterator to hold the result of FindData
-	while (std::getline(inputFile, line)) // Read each line from the input file, while there are lines to read
-	{
-		std::istringstream iss(line);
+
+	std::map<std::string, double>::iterator it; // Iterator (pointer) to hold the result of FindData
+
+	while (std::getline(inputFile, line)) // Read each line until EOF - getline (origin stream, result string)
+	{									  // Every iteration stops at a new line character (getline(inputFile, line, '\n')) by default
+		std::istringstream iss(line); // Create a string stream for each line, so we can parse it (as we did in correct_date)
 		std::string date;
-		if (std::getline(iss, date, '|')) // Split the line by '|' to get the date. ex: "2023-03-15 | 1500" becomes "2023-03-15 "
-		{
-			if (trim(date) == "date")
+
+		if (std::getline(iss, date, '|')) // getline (stream, string, reads up to delimiter) - discards the delimiter, moves 2 next char
+		{                                 // Split the line by '|' to get the date. ex: "2023-03-15 | 1500" becomes "2023-03-15 "
+			if (trim(date) == "date") // Skip the header line (date | value)
 				continue ;
-			else if (!correct_date(trim(date)))
+			else if (!correct_date(trim(date))) // Validate the date format and range
 				std::cerr << "Error: bad input => " << date << std::endl;
-			else if (!(iss >> value))
+			else if (!(iss >> value)) // Try to read the value (after '|') as double
 				std::cerr << "Error: bad value" << std::endl;
-			else if (value < 0)
+			else if (value < 0) // Check for negative value
 				std::cerr << "Error: not a positive number" << std::endl;
-			else if (value > INT_MAX)
+			else if (value > INT_MAX) // Check for excessively large value
 				std::cerr << "Error: too large number" << std::endl;
-			else
+			else // If all checks pass, find the data and print the result
 			{
-				date = trim(date);
-				it = data.FindData(date);
-				std::cout << date << " => " << value << " = " << value * it->second << std::endl;
+				date = trim(date); // Trim whitespace from date
+				it = data.FindData(date); // Find the corresponding data for the date
+				std::cout << date << " => " << value << " = " << value * it->second << std::endl; // Print date, value, and calculated exchange rate
 			}
 		}
-		else
+		else // If the line cannot be split properly,
 			std::cerr << "Error: bad input => " << date << std::endl;
 	}
-	inputFile.close();
+	inputFile.close(); // Close the input file
+	
+	return (0);
 }
-
-// In summary, the main function orchestrates the reading and processing of Bitcoin exchange data
-// from a specified input file, utilizing the BitcoinExchange class to load historical data,
-// validate input dates and values, and compute exchange rates while handling potential errors
-// and exceptions.
 
