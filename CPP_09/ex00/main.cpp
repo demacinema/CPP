@@ -5,7 +5,7 @@
 #include <ctime> // for time functions to get current date
 #include <iomanip> // for std::setprecision
 // #include <cmath> // for std::floor - used in rounding
-#include <climits> // for INT_MAX
+// #include <climits> // for INT_MAX
 
 // Checks its format and ensures that falls within acceptable ranges
 bool	correct_date(std::string date)
