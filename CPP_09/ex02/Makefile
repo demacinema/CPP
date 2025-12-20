@@ -1,14 +1,5 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: demetriorodrigues <demetriorodrigues@st    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/04/20 22:42:34 by demetriorod       #+#    #+#              #
-#    Updated: 2025/04/20 22:54:36 by demetriorod      ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+# /* demrodri@student.42wolfsburg.de
+#    CPP09 - ex02 - PmergeMe - Makefile */
 
 NAME	= PmergeMe
 

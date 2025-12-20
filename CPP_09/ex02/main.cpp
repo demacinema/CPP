@@ -1,79 +1,48 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: demetriorodrigues <demetriorodrigues@st    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/20 22:50:54 by demetriorod       #+#    #+#             */
-/*   Updated: 2025/04/20 22:55:00 by demetriorod      ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+/* demrodri@student.42wolfsburg.de
+   CPP09 - ex02 - PmergeMe - main.cpp */
 
 #include "PmergeMe.hpp"
 
-int	dup_handle(char **argv)
-
-{
-	for (int i = 1; argv[i]; i++)
-	{
-		for (int j = i + 1; argv[j]; j++)
-		{
-			if (strcmp(argv[i], argv[j]) == 0)
-				return (1);
-		}
-	}
-	return (0);
-}
-
-int	symbol_handle(char **argv)
-
-{
-	for (int i = 1; argv[i]; i++)
-	{
-		for (int j = 0; argv[i][j]; j++)
-		{
-			if (isdigit(argv[i][j]) == 0)
-				return (1);
-		}
-	}
-	return (0);
-}
-
-int	int_handle(char **argv)
-
+int has_error(char **argv)
 {
     char *endptr;
-	for (int i = 1; argv[i]; i++)
-	{
-		if (std::strtoul(argv[i], &endptr, 10) < 0 || std::strtoul(argv[i], &endptr, 10) > UINT_MAX)
-			return (1);
-	}
-	return (0);
+    for (int i = 1; argv[i]; i++)
+    {
+        // Reject any non-digit characters
+        for (int j = 0; argv[i][j]; j++)
+            if (!isdigit(argv[i][j]))
+                return (1);
+        // Reject zero as input
+        if (strcmp(argv[i], "0") == 0)
+            return (1);
+        // Reject numbers larger than INT_MAX
+        unsigned long val = std::strtoul(argv[i], &endptr, 10);
+        if (val > INT_MAX)
+            return (1);
+    }
+    return (0);
 }
 
-void	error_handle(char **argv)
+int main(int argc, char **argv)
 {
-	if (int_handle(argv))
-		std::cerr << "UINT limit reached!" << std::endl;
-	else if (dup_handle(argv))
-		std::cerr << "Duplicates exist!" << std::endl;
-	else if (symbol_handle(argv))
-		std::cerr << "Wrong symbols exist!" << std::endl;
-	else
-		return ;
-	exit(1);
-}
-
-int main(int argc, char **argv){
+	// Check for missing arguments
     if (argc < 2)
     {
-        std::cerr << "No arguments given!" << std::endl;
+        std::cerr << "Error" << std::endl;
         return (1);
     }
-    error_handle(argv);
+	// Check for invalid arguments
+    if (has_error(argv))
+    {
+        std::cerr << "Error" << std::endl;
+        return (1);
+    }
+	
+	// Create containers and perform sorting
 	PmergeMe<std::vector<int> > vector(argv + 1);
 	PmergeMe<std::deque<int> > deque(argv + 1);
+
+	// Print results
 	std::cout << "Before: ";
 	vector.printData();
 	vector.main_sort();
