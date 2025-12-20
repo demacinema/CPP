@@ -28,21 +28,20 @@ PmergeMe<Container> &PmergeMe<Container>::operator=(const PmergeMe &other)
     return *this;
 }
 
+// Container Type Helper
 template <typename Container>
 std::string getContainer();
 
 template <>
 std::string getContainer<std::vector<int> >()
-{
-    return "vector<int>";
-}
+{ return "vector<int>"; }
 
 template <>
 std::string getContainer<std::deque<int> >()
-{
-    return "deque<int>";
-}
+{ return "deque<int>"; }
 
+
+// Constructor that initializes the container with values from command-line arguments
 template <typename Container>
 PmergeMe<Container>::PmergeMe(char **argv) : _last(-1), _time(0)
 {
@@ -55,25 +54,37 @@ PmergeMe<Container>::PmergeMe(char **argv) : _last(-1), _time(0)
     }
 }
 
+
+// Main sorting function implementing the Ford-Johnson sorting algorithm
 template <typename Container>
 void    PmergeMe<Container>::main_sort()
 {
     if (_data.size() == 1)
     {
-        // std::cout << "Nothing to sort" << std::endl;
         _time = 0;
         return ;
     }
     std::clock_t start = std::clock();
+
+    // Step 1: Create and sort pairs
     typedef std::pair<int, int> type_pair;
     std::vector<type_pair> pair_array = this->mergesort_pairs();
+
+    // Step 2: Generate Jacobsthal sequence for insertion order
     std::vector<int> j_index = jacobsthal_sequence(_data.size());
+
+    // Step 3: Sort pair by winner elements
     this->insertsort_pairs(pair_array);
+
+    // Step 4: Merge pairs using insertion sort guided by Jacobsthal sequence
     _data.clear();
-    _data.push_back(pair_array[0].second);
+    _data.push_back(pair_array[0].second); // Insert the first loser element
     for (size_t i = 0; i < pair_array.size(); i++)
-        _data.push_back(pair_array[i].first);
+        _data.push_back(pair_array[i].first); // Insert all winner elements
+
+    // Step 5: Insert loser elements in the order defined by the Jacobsthal sequence
     int index = 0;
+
     for (size_t i = 0; i < j_index.size(); i++)
     {
         if (size_t(j_index[i]) >= pair_array.size())
@@ -93,25 +104,33 @@ void    PmergeMe<Container>::main_sort()
         _data.insert(_data.begin() + index, loser);
     }
 
+    // Step 6: If there was an unpaired last element, insert it
     if (_last != -1)
     {
-        // 
         index = binary_search(_last, _data.size() - 1);
         _data.insert(_data.begin() + index, _last);
     }
+
+    // Step 7: Calculate elapsed time
     _time = static_cast<double>(std::clock() - start) / static_cast<double>(CLOCKS_PER_SEC);
 }
 
+
+// Pairing and sorting helpers
+
+// Pairs up elements and sorts each pair (winner, loser)
 template <typename Container>
 typename std::vector<typename PmergeMe<Container>::type_pair> PmergeMe<Container>::mergesort_pairs()
 {
     std::vector<type_pair> pair_array;
-    if (_data.size() % 2 != 0){
+    if (_data.size() % 2 != 0)
+    {
         _last = _data.back();
         _data.pop_back();
     }
     else
         _last = -1;
+
     for (size_t i = 0; i < _data.size(); i += 2)
     {
         if (_data[i] < _data[i + 1])
@@ -121,11 +140,14 @@ typename std::vector<typename PmergeMe<Container>::type_pair> PmergeMe<Container
     return (pair_array);
 }
 
+
+// Insertion sort for sorting pairs based on winner elements
 template <typename Container>
 void PmergeMe<Container>::insertsort_pairs(std::vector<type_pair> &pair_array)
 {
     if (pair_array.size() == 1)
         return ;
+
     for (size_t i = 1; i < pair_array.size(); i++)
     {
         type_pair tmp = pair_array[i];
@@ -138,47 +160,34 @@ void PmergeMe<Container>::insertsort_pairs(std::vector<type_pair> &pair_array)
     }
 }
 
-
-// This function generates the Jacobsthal sequence up to a specified size.
-// Without the Jacobsthal sequence, the Ford-Johnson sorting algorithm would not be able to determine the optimal order of insertion during the merging process, potentially leading to less efficient sorting performance.
-// For example, if I want to sort (54, 26, 93, 17, 77, 31, 44, 55, 20), the Jacobsthal sequence helps to determine the order in which elements are inserted during the merging process, the pair will be (54,26), (93,17), (77,31), (44,55), (20).
-// After sorting each pair, we get (26,54), (17,93), (31,77), (44,55), (20).
-// Then, we proceed to merge these pairs using insertion sort guided by the Jacobsthal sequence. Insertion sort is a simple sorting algorithm that builds the final sorted array one item at a time.
-// Using the Jacobsthal sequence, we can determine the order of insertion during the merging process,
-// so the first element to be inserted might be the second element of the second pair (26), followed by the first element of the third pair (17), because the Jacobsthal sequence generated is [1, 3, 5, 11, ...].
-// This is how it works, step by step and in a simple explanation:
-// 1. It starts by initializing a temporary vector (temp_index) with the first two Jacobsthal numbers: 0 and 1.
-// 2. It then enters a loop where it calculates subsequent Jacobsthal numbers using the formula J(n) = J(n-1) + 2 * J(n-2).
-// 3. This loop continues until the last calculated Jacobsthal number is less than the specified size.
-// 4. After generating the full sequence, it constructs the final Jacobsthal sequence (j_index) by iterating through the temporary vector.
-// 5. For each Jacobsthal number in the temporary vector (except the first two), it adds the number to the final sequence and then adds all numbers between the current and the previous Jacobsthal number in descending order.
-// 6. Finally, it returns the constructed Jacobsthal sequence. 
+// Generates Jacobsthal sequence up to the given size
 
 template <typename Container>
 std::vector<int> PmergeMe<Container>::jacobsthal_sequence(size_t size)
 {
-    std::vector<int> temp_index; // Temporary vector to store Jacobsthal numbers.
-    std::vector<int> j_index; // Final Jacobsthal sequence to be returned.
-    temp_index.push_back(0); // this is the first Jacobsthal number, J(0) = 0. It serves as the starting point for generating the sequence.
-    temp_index.push_back(1); // this is the second Jacobsthal number, J(1) = 1. It is the next number in the sequence and is used in the calculation of subsequent numbers.
+    std::vector<int> temp_index; // Temporary vector to hold the initial Jacobsthal numbers.
+    std::vector<int> j_index;
+    temp_index.push_back(0);
+    temp_index.push_back(1);
+    int temp;
 
-    int temp; // Temporary variable to hold the current Jacobsthal number during the construction of the final sequence.
-
-    for (int i = 2; temp_index.back() < (int)size; i++) // Loop to generate Jacobsthal numbers until the last number is less than the specified size.
+    for (int i = 2; temp_index.back() < (int)size; i++)
     {
-        temp_index.push_back(temp_index[i - 1] + (temp_index[i - 2] * 2)); // Calculate the next Jacobsthal number using the formula J(n) = J(n-1) + 2 * J(n-2) and add it to the temporary vector.
+        temp_index.push_back(temp_index[i - 1] + (temp_index[i - 2] * 2));
     }
 
-    for (size_t i = 1; i < temp_index.size() - 1; i++) // Loop to construct the final Jacobsthal sequence.
+    for (size_t i = 1; i < temp_index.size() - 1; i++)
     {
-        j_index.push_back(temp_index[i + 1]); // Add the current Jacobsthal number to the final sequence.
-        temp = temp_index[i + 1]; // Set the temporary variable to the current Jacobsthal number.
-        while (--temp > temp_index[i]) // Add all numbers between the current and the previous Jacobsthal number in descending order.
-            j_index.push_back(temp); // This ensures that all numbers between the two Jacobsthal numbers are included in the final sequence.
+        j_index.push_back(temp_index[i + 1]);
+        temp = temp_index[i + 1];
+        while (--temp > temp_index[i])
+            j_index.push_back(temp);
     }
-    return (j_index); // Return the constructed Jacobsthal sequence.
+    return (j_index);
 }
 
+// Utility functions
+// Finds the position of a value in the sorted data (_data)
 template<typename Container>
 int PmergeMe<Container>::find_position(int value)
 {
@@ -190,11 +199,12 @@ int PmergeMe<Container>::find_position(int value)
     return _data.size() - 1;
 }
 
+// Binary search to find the correct insertion index for a target value up to max_position
 template<typename Container>
 int PmergeMe<Container>::binary_search(int target, int max_position)
 {
     int left = 0;
-    int right = max_position;  // ← Only search up to here!
+    int right = max_position;
     while (left <= right)
     {
         int middle = (left + right) / 2;
@@ -207,37 +217,24 @@ int PmergeMe<Container>::binary_search(int target, int max_position)
     }
     return (left);
 }
-// template<typename Container>
-// int PmergeMe<Container>::binary_search(int target)
-// {
-//     int left = 0;
-//     int right = _data.size() - 1;
-//     while (left <= right)
-//     {
-//         int middle = (left + right) / 2;
-//         if (_data[middle] == target)
-//             return middle;
-//         if (_data[middle] > target)
-//             right = middle - 1;
-//         else
-//             left = middle + 1;
-//     }
-//     return (left);
-// }
 
+// Getters and Print functions
+
+// Returns the data container
 template <typename Container>
 Container PmergeMe<Container>::getData()
-{
-    return (_data);
-}
+{ return (_data); }
 
+// Prints the time taken for sorting
 template <typename Container>
 void    PmergeMe<Container>::getTime()
 {
-    std::cout << "Time to process a range of " << _data.size() << " elements with std::"
-    << getContainer<Container>() << " : " << std::fixed << std::setprecision(5) << _time << " us" << std::endl;
+    std::cout << "Time to process a range of " << _data.size() 
+    << " elements with std::" << getContainer<Container>()
+    << " : " << std::fixed << std::setprecision(5) << _time << " us" << std::endl;
 }
 
+// Prints the elements in the data container
 template <typename Container>
 void PmergeMe<Container>::printData()
 {
@@ -248,5 +245,6 @@ void PmergeMe<Container>::printData()
     std::cout << std::endl;
 }
 
+// Explicit template instantiation for vector<int> and deque<int>
 template class PmergeMe<std::vector<int> >;
 template class PmergeMe<std::deque<int> >;
